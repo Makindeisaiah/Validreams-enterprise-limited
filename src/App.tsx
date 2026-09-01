@@ -337,62 +337,18 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-24">
-            {/* Logo Mark + Wordmark */}
+            {/* Logo Image */}
             <a
               href="#"
               id="brand-logo"
-              className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 rounded"
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 rounded"
               aria-label="Validreams Enterprises Limited"
             >
-              <div className="flex flex-col items-center">
-                {/* Architectural Emblem Icon */}
-                <svg
-                  className="w-8 h-8 text-gray-900 mb-1 group-hover:text-amber-600 transition-colors"
-                  viewBox="0 0 40 40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M20 4L14 12V34H26V12L20 4Z" />
-                  <path d="M20 4V34" />
-                  <path d="M14 15L7 21V34H14" />
-                  <path d="M26 15L33 21V34H26" />
-                  <path d="M17 18H23" />
-                  <path d="M17 24H23" />
-                  <path d="M10 27H14" />
-                  <path d="M26 27H30" />
-                </svg>
-
-                {/* Wordmark: VALI DR EAMS with DR bold */}
-                <div className="flex items-baseline tracking-tight font-serif text-gray-900 leading-none">
-                  <span className="font-light tracking-wide text-gray-800 text-[1.15rem]">
-                    VALI
-                  </span>
-                  <span className="font-bold tracking-tight text-gray-950 text-[1.4rem] ml-0.5">
-                    DR
-                  </span>
-                  <span className="font-light tracking-wide text-gray-800 text-[1.15rem]">
-                    EAMS
-                  </span>
-                </div>
-
-                {/* Subtitle: ENTERPRISES LIMITED */}
-                <div className="w-full flex items-center justify-center gap-1.5 mt-1">
-                  <span className="h-[0.75px] bg-gray-300 w-2.5 grow"></span>
-                  <span className="text-[7.5px] sm:text-[8px] tracking-[0.22em] font-semibold text-gray-700 uppercase whitespace-nowrap">
-                    ENTERPRISES LIMITED
-                  </span>
-                  <span className="h-[0.75px] bg-gray-300 w-2.5 grow"></span>
-                </div>
-
-                {/* Sub-label: REAL ESTATE • PROPERTY & FACILITY MANAGEMENT */}
-                <p className="text-[6px] sm:text-[6.5px] tracking-wider text-gray-400 font-medium uppercase mt-0.5 whitespace-nowrap">
-                  REAL ESTATE • PROPERTY &amp; FACILITY MANAGEMENT
-                </p>
-              </div>
+              <img
+                src="./assets/logo.png"
+                alt="Validreams Enterprises Limited"
+                className="h-12 sm:h-14 w-auto object-contain"
+              />
             </a>
 
             {/* Desktop Navigation Links */}
