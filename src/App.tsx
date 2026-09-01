@@ -241,6 +241,39 @@ export default function App() {
     },
   ];
 
+  const approachSteps = [
+    {
+      id: 'approach-01',
+      number: '01',
+      title: 'Assess',
+      description: 'Asset Register & Condition Assessment',
+    },
+    {
+      id: 'approach-02',
+      number: '02',
+      title: 'Plan',
+      description: 'Planned Preventive Maintenance',
+    },
+    {
+      id: 'approach-03',
+      number: '03',
+      title: 'Support',
+      description: '24/7 Helpdesk Operations',
+    },
+    {
+      id: 'approach-04',
+      number: '04',
+      title: 'Monitor',
+      description: 'Performance Monitoring',
+    },
+    {
+      id: 'approach-05',
+      number: '05',
+      title: 'Engage',
+      description: 'Resident Engagement & Quarterly Reviews',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans text-gray-900 antialiased selection:bg-amber-400 selection:text-gray-950">
       {/* ========================================================================= */}
@@ -664,6 +697,84 @@ export default function App() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 4: OUR APPROACH SECTION */}
+      {/* ========================================================================= */}
+      <section
+        id="our-approach"
+        className="w-full bg-white py-20 sm:py-24 px-6 sm:px-10 lg:px-12 flex flex-col justify-center selection:bg-amber-400 selection:text-gray-950 font-sans border-b border-gray-100"
+      >
+        <div className="max-w-7xl mx-auto w-full">
+          {/* Centered Section Header */}
+          <div
+            id="approach-header"
+            className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
+          >
+            <span
+              id="approach-eyebrow"
+              className="text-amber-500 font-bold text-xs sm:text-sm tracking-[0.2em] uppercase inline-block mb-3"
+            >
+              OUR APPROACH
+            </span>
+            <h2
+              id="approach-heading"
+              className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-[#1F3D2E] tracking-tight leading-tight"
+            >
+              Preventive Today. Peace of Mind Always
+            </h2>
+          </div>
+
+          {/* 5-Step Process Timeline */}
+          <div
+            id="approach-timeline-container"
+            className="relative w-full max-w-6xl mx-auto"
+          >
+            {/* Connecting dotted gold line across all 5 circles on desktop */}
+            <div
+              className="hidden md:block absolute top-[48px] left-[10%] right-[10%] border-t-2 border-dotted border-[#facc15] pointer-events-none z-0"
+              aria-hidden="true"
+            />
+
+            {/* Steps Container */}
+            <div
+              id="approach-steps"
+              className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-10 md:gap-4 lg:gap-6"
+            >
+              {approachSteps.map((step) => (
+                <div
+                  key={step.id}
+                  id={step.id}
+                  className="flex-1 flex flex-col items-center text-center w-full max-w-[220px]"
+                >
+                  {/* Circular Node (solid dark green #1F3D2E, 96px diameter, white Building2 icon) */}
+                  <div
+                    className="w-24 h-24 rounded-full bg-[#1F3D2E] flex items-center justify-center shadow-md mb-6 relative z-10 shrink-0 transition-transform duration-200 hover:scale-105"
+                    aria-hidden="true"
+                  >
+                    <Building2 className="w-10 h-10 text-white stroke-[1.5]" />
+                  </div>
+
+                  {/* Step Number */}
+                  <span className="text-lg sm:text-xl font-bold text-gray-950 mb-1 leading-none">
+                    {step.number}
+                  </span>
+
+                  {/* Step Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 leading-tight">
+                    {step.title}
+                  </h3>
+
+                  {/* Short Description */}
+                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed text-center">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
