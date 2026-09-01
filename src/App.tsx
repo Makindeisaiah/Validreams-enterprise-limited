@@ -336,12 +336,12 @@ export default function App() {
         className="w-full bg-white border-b border-gray-100 z-50 sticky top-0 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
+          <div className="flex items-center justify-between h-24 sm:h-28">
             {/* Logo Image */}
             <a
               href="#"
               id="brand-logo"
-              className="flex items-center focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 rounded"
+              className="flex items-center py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 rounded"
               aria-label="Validreams Enterprises Limited"
             >
               <img
@@ -354,7 +354,7 @@ export default function App() {
                   }
                 }}
                 alt="Validreams Enterprises Limited"
-                className="h-12 sm:h-14 w-auto object-contain"
+                className="h-16 sm:h-20 lg:h-22 w-auto max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] object-contain"
               />
             </a>
 
