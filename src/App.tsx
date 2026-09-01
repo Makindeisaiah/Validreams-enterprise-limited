@@ -835,61 +835,8 @@ export default function App() {
       {/* STATS BANNER SECTION */}
       {/* ========================================================================= */}
       <section
-        id="impact-stats-banner"
-        className="relative w-full min-h-[320px] sm:min-h-[360px] flex items-center justify-center py-16 sm:py-20 px-6 sm:px-10 lg:px-20 overflow-hidden font-sans selection:bg-amber-400 selection:text-gray-950"
-      >
-        {/* Background Image: Night cityscape / luxury residential complex with warm lit windows */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85')`,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Dark Overlay (roughly 60% opacity) */}
-        <div
-          className="absolute inset-0 bg-black/60 pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Content Container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto">
-          <div
-            id="stats-banner-row"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-around lg:items-center gap-10 sm:gap-12 lg:gap-8"
-          >
-            {bannerStats.map((item) => (
-              <div
-                key={item.id}
-                id={item.id}
-                className="flex flex-col items-center justify-center text-center group"
-              >
-                {/* 1. White outline icon */}
-                <div className="mb-3.5 transition-transform duration-200 group-hover:scale-110">
-                  {item.icon}
-                </div>
-
-                {/* 2. Large bold number in amber/gold (#facc15) */}
-                <span className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-[#facc15] tracking-tight leading-none mb-2.5">
-                  {item.number}
-                </span>
-
-                {/* 3. White label text below */}
-                <span className="text-white/95 font-medium text-sm sm:text-base tracking-wide sm:tracking-wider leading-snug">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* ========================================================================= */}
-      {/* STATS BANNER SECTION (NIGHT LUXURY ARCHITECTURE) */}
-      {/* ========================================================================= */}
-      <section
         id="stats-banner"
-        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden py-14 sm:py-16 px-6 sm:px-10 lg:px-16 xl:px-20"
+        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden py-14 sm:py-16 px-6 sm:px-10 lg:px-16 xl:px-20 font-sans selection:bg-amber-400 selection:text-gray-950"
       >
         {/* Background Image: Night-time luxury residential architecture with warm lit windows & city backdrop */}
         <div
@@ -897,6 +844,7 @@ export default function App() {
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85')`,
           }}
+          aria-hidden="true"
         />
 
         {/* Dark Overlay (roughly 60% opacity) */}
