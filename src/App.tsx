@@ -11,6 +11,9 @@ import {
   Settings,
   BookOpen,
   MonitorCheck,
+  UserCheck,
+  Award,
+  Leaf,
 } from 'lucide-react';
 
 export default function App() {
@@ -18,7 +21,7 @@ export default function App() {
 
   const navLinks = [
     { name: 'Home', href: '#', active: true },
-    { name: 'About', href: '#about', active: false },
+    { name: 'About', href: '#why-choose-us', active: false },
     { name: 'Services', href: '#services', active: false },
     { name: 'Property & Facilities', href: '#facilities', active: false },
     { name: 'Projects', href: '#projects', active: false },
@@ -168,6 +171,82 @@ export default function App() {
       icon: (
         <MonitorCheck
           className="w-9 h-9 text-amber-500 stroke-[1.65]"
+          aria-hidden="true"
+        />
+      ),
+    },
+  ];
+
+  const whyChooseUsItems = [
+    {
+      id: 'why-professionalism',
+      line1: 'Professionalism',
+      line2: '& Expert',
+      icon: (
+        <UserCheck
+          className="w-11 h-11 text-[#1F3D2E] stroke-[1.6]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'why-technology',
+      line1: 'Efficiency via',
+      line2: 'Technology',
+      icon: (
+        <div className="relative flex items-center justify-center w-11 h-11">
+          {/* Monitor + Tower custom line icon matching reference */}
+          <svg
+            className="w-11 h-11 text-[#1F3D2E]"
+            viewBox="0 0 44 44"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            {/* Monitor Screen */}
+            <rect x="3" y="7" width="23" height="18" rx="2.5" />
+            <path d="M9 31h11" />
+            <path d="M14.5 25v6" />
+            {/* Tower */}
+            <rect x="30" y="7" width="11" height="24" rx="2" />
+            <circle cx="35.5" cy="12" r="1" fill="currentColor" />
+            <line x1="33" y1="16" x2="38" y2="16" />
+          </svg>
+        </div>
+      ),
+    },
+    {
+      id: 'why-transparency',
+      line1: 'Transparency &',
+      line2: 'Accountability',
+      icon: (
+        <ShieldCheck
+          className="w-11 h-11 text-[#1F3D2E] stroke-[1.6]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'why-standards',
+      line1: 'Premium',
+      line2: 'Service Standards',
+      icon: (
+        <Award
+          className="w-11 h-11 text-[#1F3D2E] stroke-[1.6]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'why-sustainability',
+      line1: 'Sustainability',
+      line2: 'Focused',
+      icon: (
+        <Leaf
+          className="w-11 h-11 text-[#1F3D2E] stroke-[1.6]"
           aria-hidden="true"
         />
       ),
@@ -442,7 +521,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section
         id="services"
-        className="w-full bg-white py-20 sm:py-24 px-6 sm:px-10 lg:px-12 flex flex-col justify-center selection:bg-amber-400 selection:text-gray-950 font-sans"
+        className="w-full bg-white py-20 sm:py-24 px-6 sm:px-10 lg:px-12 flex flex-col justify-center selection:bg-amber-400 selection:text-gray-950 font-sans border-b border-gray-100"
       >
         <div className="max-w-7xl mx-auto w-full">
           {/* Centered Section Header */}
@@ -520,6 +599,88 @@ export default function App() {
                 aria-hidden="true"
               />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 3: WHY CHOOSE US SECTION */}
+      {/* ========================================================================= */}
+      <section
+        id="why-choose-us"
+        className="w-full bg-[#F1F1F0] py-20 sm:py-24 px-6 sm:px-10 lg:px-12 flex flex-col justify-center selection:bg-amber-400 selection:text-gray-950 font-sans"
+      >
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* LEFT HALF */}
+            <div
+              id="why-choose-us-left"
+              className="lg:col-span-5 flex flex-col justify-center"
+            >
+              {/* Amber/Gold Eyebrow */}
+              <div id="why-eyebrow" className="mb-3.5">
+                <span className="text-amber-500 font-bold text-xs sm:text-sm tracking-[0.2em] uppercase inline-block">
+                  WHY CHOOSE VALIDREAMS
+                </span>
+              </div>
+
+              {/* Large Bold Heading in Dark Green */}
+              <h2
+                id="why-heading"
+                className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-[#1F3D2E] tracking-tight leading-[1.18] mb-5"
+              >
+                Adding Value. Delivering <br className="hidden sm:inline" />
+                Peace of Mind.
+              </h2>
+
+              {/* Supporting Paragraph in dark gray/black */}
+              <p
+                id="why-description"
+                className="text-gray-800 text-sm sm:text-base leading-relaxed max-w-lg font-normal"
+              >
+                We combine professionalism, technology and integrity to deliver
+                outstanding management services that protect your investment and
+                enhance the living and working experience.
+              </p>
+            </div>
+
+            {/* RIGHT HALF: 5 Value-Prop Items with Amber Dividers */}
+            <div
+              id="why-choose-us-right"
+              className="lg:col-span-7 w-full flex items-center justify-center"
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 sm:gap-y-10 lg:gap-y-0 w-full items-start">
+                {whyChooseUsItems.map((item, index) => (
+                  <React.Fragment key={item.id}>
+                    <div
+                      id={item.id}
+                      className="flex flex-col items-center text-center px-2 sm:px-3 relative group"
+                    >
+                      {/* Icon */}
+                      <div className="mb-4 h-12 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+                        {item.icon}
+                      </div>
+
+                      {/* Label (Two-line format in dark green medium-weight) */}
+                      <div className="text-xs sm:text-[13px] font-semibold text-[#1F3D2E] leading-snug tracking-tight text-center">
+                        <span className="block">{item.line1}</span>
+                        <span className="block">{item.line2}</span>
+                      </div>
+                    </div>
+
+                    {/* Thin vertical amber/gold divider line on desktop */}
+                    {index < whyChooseUsItems.length - 1 && (
+                      <div
+                        className="hidden lg:flex self-stretch items-center justify-center"
+                        aria-hidden="true"
+                      >
+                        <div className="w-[1px] h-20 bg-amber-400/80 rounded-full" />
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
