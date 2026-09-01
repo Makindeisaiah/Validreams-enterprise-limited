@@ -15,6 +15,7 @@ import {
   MonitorSmartphone,
   Award,
   Leaf,
+  Phone,
 } from 'lucide-react';
 
 export default function App() {
@@ -836,7 +837,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section
         id="stats-banner"
-        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden py-14 sm:py-16 px-6 sm:px-10 lg:px-16 xl:px-20 font-sans selection:bg-amber-400 selection:text-gray-950"
+        className="relative w-full min-h-[360px] sm:min-h-[380px] lg:min-h-[400px] flex items-start justify-center overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-32 sm:pb-36 lg:pb-44 px-6 sm:px-10 lg:px-16 xl:px-20 font-sans selection:bg-amber-400 selection:text-gray-950"
       >
         {/* Background Image: Night-time luxury residential architecture with warm lit windows & city backdrop */}
         <div
@@ -884,6 +885,86 @@ export default function App() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 5: CTA CARD OVERLAPPING STATS BANNER */}
+      {/* ========================================================================= */}
+      <section
+        id="cta-overlap-section"
+        className="relative w-full bg-white pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-8 xl:px-12 font-sans selection:bg-amber-400 selection:text-gray-950"
+      >
+        <div className="max-w-7xl mx-auto -mt-20 sm:-mt-24 lg:-mt-28 relative z-20">
+          {/* Overlapping White Rounded Card */}
+          <div
+            id="cta-overlap-card"
+            className="bg-white rounded-3xl shadow-2xl border border-gray-100/90 p-7 sm:p-9 lg:p-12 xl:p-14"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 items-center">
+              {/* LEFT COLUMN: Heading & Subtext */}
+              <div
+                id="cta-card-left"
+                className="lg:col-span-5 flex flex-col justify-center text-left"
+              >
+                <h3 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-[#1F3D2E] leading-[1.2] tracking-tight mb-3 sm:mb-4">
+                  Let&apos;s Take Better Care <br className="hidden sm:inline" />
+                  of Your Property
+                </h3>
+                <p className="text-gray-500 text-sm sm:text-[15px] leading-relaxed max-w-md">
+                  Partner with Validreams for reliable, innovative and result-driven property and facilities management
+                </p>
+              </div>
+
+              {/* CENTER COLUMN: Modern Luxury Villa Photo */}
+              <div
+                id="cta-card-center"
+                className="lg:col-span-4 w-full flex items-center justify-center"
+              >
+                <div className="w-full h-44 sm:h-52 rounded-2xl overflow-hidden shadow-sm relative group bg-gray-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+                    alt="Modern luxury architectural property with pool and greenery"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN: Badge, Text & Action Button */}
+              <div
+                id="cta-card-right"
+                className="lg:col-span-3 flex flex-col justify-center"
+              >
+                <div className="flex items-center gap-3.5 mb-5">
+                  {/* Small Circular Gold Badge with White Phone Icon */}
+                  <div
+                    className="w-12 h-12 rounded-full bg-[#facc15] flex items-center justify-center shrink-0 shadow-sm"
+                    aria-hidden="true"
+                  >
+                    <Phone className="w-5 h-5 text-white stroke-[2.2]" />
+                  </div>
+                  <div>
+                    <h4 className="text-base sm:text-[17px] font-bold text-gray-950 leading-tight">
+                      Ready to Get Started?
+                    </h4>
+                    <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                      Speak with our team today.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Solid Dark Green Rounded Button */}
+                <a
+                  id="cta-talk-team-btn"
+                  href="#contact"
+                  className="w-full inline-flex items-center justify-center gap-2.5 bg-[#1F3D2E] hover:bg-[#162d22] text-white font-semibold px-6 py-3.5 rounded-xl text-sm sm:text-base transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>Talk to Our Team</span>
+                  <ArrowRight className="w-4 h-4 text-white stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
