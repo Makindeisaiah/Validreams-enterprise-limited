@@ -345,7 +345,14 @@ export default function App() {
               aria-label="Validreams Enterprises Limited"
             >
               <img
-                src="./assets/logo.png"
+                src="/assets/logo.png"
+                onError={(e) => {
+                  // Fallback attempt to ./assets/logo.png or /logo.png if root-placed
+                  const target = e.currentTarget;
+                  if (target.src.endsWith('/assets/logo.png')) {
+                    target.src = '/logo.png';
+                  }
+                }}
                 alt="Validreams Enterprises Limited"
                 className="h-12 sm:h-14 w-auto object-contain"
               />
