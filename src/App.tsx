@@ -274,6 +274,57 @@ export default function App() {
     },
   ];
 
+  const bannerStats = [
+    {
+      id: 'banner-stat-properties',
+      number: '15+',
+      label: 'Properties Managed',
+      icon: (
+        <Building2
+          size={34}
+          className="text-white stroke-[1.75]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'banner-stat-experts',
+      number: '100+',
+      label: 'Expert Professionals',
+      icon: (
+        <Users
+          size={34}
+          className="text-white stroke-[1.75]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'banner-stat-support',
+      number: '24/7',
+      label: 'Operational Support',
+      icon: (
+        <Settings
+          size={34}
+          className="text-white stroke-[1.75]"
+          aria-hidden="true"
+        />
+      ),
+    },
+    {
+      id: 'banner-stat-satisfaction',
+      number: '98%',
+      label: 'Client Satisfaction',
+      icon: (
+        <ShieldCheck
+          size={34}
+          className="text-white stroke-[1.75]"
+          aria-hidden="true"
+        />
+      ),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans text-gray-900 antialiased selection:bg-amber-400 selection:text-gray-950">
       {/* ========================================================================= */}
@@ -776,6 +827,115 @@ export default function App() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* STATS BANNER SECTION */}
+      {/* ========================================================================= */}
+      <section
+        id="impact-stats-banner"
+        className="relative w-full min-h-[320px] sm:min-h-[360px] flex items-center justify-center py-16 sm:py-20 px-6 sm:px-10 lg:px-20 overflow-hidden font-sans selection:bg-amber-400 selection:text-gray-950"
+      >
+        {/* Background Image: Night cityscape / luxury residential complex with warm lit windows */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85')`,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Dark Overlay (roughly 60% opacity) */}
+        <div
+          className="absolute inset-0 bg-black/60 pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Content Container */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
+          <div
+            id="stats-banner-row"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-around lg:items-center gap-10 sm:gap-12 lg:gap-8"
+          >
+            {bannerStats.map((item) => (
+              <div
+                key={item.id}
+                id={item.id}
+                className="flex flex-col items-center justify-center text-center group"
+              >
+                {/* 1. White outline icon */}
+                <div className="mb-3.5 transition-transform duration-200 group-hover:scale-110">
+                  {item.icon}
+                </div>
+
+                {/* 2. Large bold number in amber/gold (#facc15) */}
+                <span className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-[#facc15] tracking-tight leading-none mb-2.5">
+                  {item.number}
+                </span>
+
+                {/* 3. White label text below */}
+                <span className="text-white/95 font-medium text-sm sm:text-base tracking-wide sm:tracking-wider leading-snug">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* ========================================================================= */}
+      {/* STATS BANNER SECTION (NIGHT LUXURY ARCHITECTURE) */}
+      {/* ========================================================================= */}
+      <section
+        id="stats-banner"
+        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden py-14 sm:py-16 px-6 sm:px-10 lg:px-16 xl:px-20"
+      >
+        {/* Background Image: Night-time luxury residential architecture with warm lit windows & city backdrop */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=85')`,
+          }}
+        />
+
+        {/* Dark Overlay (roughly 60% opacity) */}
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-brightness-90 pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Content Container: 4 Stats Items */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
+          <div
+            id="stats-banner-grid"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 items-center justify-items-center text-center"
+          >
+            {bannerStats.map((stat) => (
+              <div
+                key={stat.id}
+                id={stat.id}
+                className="flex flex-col items-center justify-center text-center w-full max-w-[260px] group"
+              >
+                {/* 1. White outline icon */}
+                <div
+                  className="mb-3.5 h-11 flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
+                  aria-hidden="true"
+                >
+                  {stat.icon}
+                </div>
+
+                {/* 2. Large bold number in amber/gold (#facc15) */}
+                <div className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-[#facc15] tracking-tight leading-none mb-2.5">
+                  {stat.number}
+                </div>
+
+                {/* 3. White label text below with generous letter spacing */}
+                <p className="text-white text-sm sm:text-base font-medium tracking-wider whitespace-nowrap">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
