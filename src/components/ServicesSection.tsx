@@ -6,59 +6,48 @@ import {
   ShieldCheck,
   BookOpen,
   MonitorCheck,
+  Lightbulb,
+  Award,
   ArrowRight,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { servicesList } from '../data/servicesData';
 
 interface ServicesSectionProps {
+  onNavigate?: (page: string, subId?: string) => void;
   onViewAll?: () => void;
 }
 
-export default function ServicesSection({ onViewAll }: ServicesSectionProps) {
-  const services = [
-    {
-      id: 'property-rent',
-      icon: Building2,
-      iconColor: 'text-[#1F3D2E]',
-      title: 'Property & Rent Management',
-      body: 'Leasing, tenant management, rent collection & property administration.',
-    },
-    {
-      id: 'technical-maintenance',
-      icon: Settings,
-      iconColor: 'text-[#facc15]',
-      title: 'Technical & Maintenance',
-      body: 'Electrical, mechanical, HVAC, plumbing, generator, fire systems & water treatment',
-    },
-    {
-      id: 'soft-services',
-      icon: Sparkles,
-      iconColor: 'text-[#1F3D2E]',
-      title: 'Soft Services',
-      body: 'Cleaning, landscaping, waste management, pest control, concierge & reception',
-    },
-    {
-      id: 'security-management',
-      icon: ShieldCheck,
-      iconColor: 'text-[#facc15]',
-      title: 'Security Management',
-      body: '24/7 guarding, access control, CCTV, visitor screening & security liaison.',
-    },
-    {
-      id: 'admin-financial',
-      icon: BookOpen,
-      iconColor: 'text-[#1F3D2E]',
-      title: 'Administrative & Financial Management',
-      body: 'Rent & utilities administration, resident relations, procurement & budgeting.',
-    },
-    {
-      id: 'cafm-solutions',
-      icon: MonitorCheck,
-      iconColor: 'text-[#facc15]',
-      title: 'CAFM Solutions',
-      body: 'Real-time task monitoring, reporting & SLA performance tracking.',
-    },
-  ];
+export default function ServicesSection({ onNavigate, onViewAll }: ServicesSectionProps) {
+  // Map icons to the 8 services
+  const getIcon = (iconName: string, isAlternate: boolean) => {
+    const colorClass = isAlternate ? 'text-[#facc15]' : 'text-[#1F3D2E]';
+    switch (iconName) {
+      case 'Building2':
+        return <Building2 className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'Settings':
+        return <Settings className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'Sparkles':
+        return <Sparkles className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'ShieldCheck':
+        return <ShieldCheck className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'BookOpen':
+        return <BookOpen className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'MonitorCheck':
+        return <MonitorCheck className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'Lightbulb':
+        return <Lightbulb className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+      case 'Award':
+      default:
+        return <Award className={`w-9 h-9 ${colorClass} stroke-[1.75]`} />;
+    }
+  };
+
+  const handleServiceClick = (slug: string) => {
+    if (onNavigate) {
+      onNavigate(`service-${slug}`, slug);
+    }
+  };
 
   return (
     <section
@@ -82,13 +71,16 @@ export default function ServicesSection({ onViewAll }: ServicesSectionProps) {
           </p>
 
           {/* Large bold heading in dark green */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F3D2E] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F3D2E] tracking-tight leading-tight mb-4">
             Comprehensive Solutions for Every Property
           </h2>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            From technical engineering and CAFM automation to tenancy administration and real estate advisory, Validreams delivers integrated asset protection.
+          </p>
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* 2. 6-CARD GRID */}
+        {/* 2. 8-CARD RESPONSIVE GRID */}
         {/* ========================================================================= */}
         <motion.div
           variants={{
@@ -96,60 +88,66 @@ export default function ServicesSection({ onViewAll }: ServicesSectionProps) {
             show: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.09,
+                staggerChildren: 0.08,
               },
             },
           }}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
         >
-          {services.map((service) => {
-            const IconComponent = service.icon;
+          {servicesList.map((service, index) => {
+            const isAlternate = index % 2 === 1;
             return (
               <motion.div
                 key={service.id}
                 id={`service-card-${service.id}`}
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
+                  hidden: { opacity: 0, y: 24 },
                   show: {
                     opacity: 1,
                     y: 0,
-                    transition: { duration: 0.5, ease: 'easeOut' },
+                    transition: { duration: 0.45, ease: 'easeOut' },
                   },
                 }}
                 whileHover={{
-                  y: -4,
+                  y: -5,
                   boxShadow:
-                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                    '0 20px 25px -5px rgba(31, 61, 46, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)',
                 }}
-                className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 flex flex-col items-center text-center justify-between transition-colors duration-300 hover:border-gray-300 group cursor-pointer"
+                onClick={() => handleServiceClick(service.slug)}
+                className="bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:border-[#1F3D2E]/30 group cursor-pointer relative"
               >
-                {/* Top / Icon Section */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-6 flex items-center justify-center">
-                    <IconComponent
-                      className={`w-10 h-10 ${service.iconColor} stroke-[1.75] transition-transform duration-300 group-hover:scale-110`}
-                      aria-hidden="true"
-                    />
+                {/* Top / Icon and Tag */}
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="p-3 rounded-xl bg-gray-50 group-hover:bg-amber-50/50 transition-colors">
+                      {getIcon(service.icon, isAlternate)}
+                    </div>
+                    {service.isSuggestedCopy && (
+                      <span className="text-[10px] uppercase font-semibold tracking-wider text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded">
+                        Strategic
+                      </span>
+                    )}
                   </div>
 
-                  {/* Bold Title (two lines max) */}
-                  <h3 className="text-base sm:text-[17px] font-bold text-gray-900 tracking-tight leading-snug mb-3 line-clamp-2 min-h-[44px] flex items-center justify-center">
+                  {/* Bold Title */}
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight leading-snug mb-2.5 group-hover:text-[#1F3D2E] transition-colors">
                     {service.title}
                   </h3>
 
-                  {/* Short gray description sentence */}
-                  <p className="text-xs sm:text-[13px] text-gray-500 leading-relaxed font-normal">
-                    {service.body}
+                  {/* Description sentence */}
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-normal">
+                    {service.shortDesc}
                   </p>
                 </div>
 
-                {/* Bottom / Small right-arrow icon */}
-                <div className="mt-6 pt-2 text-gray-900 group-hover:text-[#1F3D2E] flex items-center justify-center transition-colors">
+                {/* Bottom / Learn More with arrow */}
+                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs sm:text-sm font-semibold text-[#1F3D2E] group-hover:text-amber-600 transition-colors">
+                  <span>Learn More</span>
                   <ArrowRight
-                    className="w-4 h-4 stroke-[2.2] transition-transform duration-200 group-hover:translate-x-1"
+                    className="w-4 h-4 stroke-[2.2] transition-transform duration-200 group-hover:translate-x-1.5"
                     aria-hidden="true"
                   />
                 </div>
@@ -159,7 +157,7 @@ export default function ServicesSection({ onViewAll }: ServicesSectionProps) {
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* 3. CENTERED SOLID DARK GREEN BUTTON */}
+        {/* 3. SECONDARY STANDARDIZED CTA: "Explore Our Services" */}
         {/* ========================================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -168,22 +166,23 @@ export default function ServicesSection({ onViewAll }: ServicesSectionProps) {
           transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
           className="mt-14 sm:mt-16 flex justify-center"
         >
-          <motion.a
-            href="#all-services"
-            id="btn-view-all-services"
+          <motion.button
+            type="button"
+            id="btn-explore-our-services"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            onClick={(e) => {
-              if (onViewAll) {
-                e.preventDefault();
+            onClick={() => {
+              if (onNavigate) {
+                onNavigate('services');
+              } else if (onViewAll) {
                 onViewAll();
               }
             }}
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
+            className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2 cursor-pointer"
           >
-            <span>View All Services</span>
+            <span>Explore Our Services</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

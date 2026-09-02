@@ -8,6 +8,9 @@ import {
   Handshake,
   Lightbulb,
   Leaf,
+  Target,
+  Eye,
+  Compass,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import StatsBanner from './StatsBanner';
@@ -15,18 +18,18 @@ import CtaCard from './CtaCard';
 import Footer from './Footer';
 
 interface AboutPageProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: string, subId?: string) => void;
 }
 
 export default function AboutPage({ onNavigate }: AboutPageProps) {
   return (
-    <div className="w-full bg-white text-gray-900">
+    <div className="w-full bg-white text-gray-900 font-sans antialiased selection:bg-amber-400 selection:text-slate-950">
       {/* ========================================================================= */}
-      {/* 2. HERO / BANNER SECTION (ABOUT US) */}
+      {/* 1. HERO / BANNER SECTION (ABOUT US) */}
       {/* ========================================================================= */}
       <section
         id="about-hero-banner"
-        className="relative w-full min-h-[550px] sm:min-h-[580px] lg:min-h-[600px] flex items-center overflow-hidden bg-[#1F2C2A]"
+        className="relative w-full min-h-[500px] sm:min-h-[560px] flex items-center overflow-hidden bg-[#1F2C2A]"
       >
         {/* Full-Bleed Background Photo: Modern Luxury Residential Building at Dusk */}
         <div className="absolute inset-0 w-full h-full">
@@ -37,33 +40,26 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           />
         </div>
 
-        {/* Dark Gradient Overlay: slate/green-gray (#1F2C2A) ~75-80% on the left, fading to transparent on the right */}
+        {/* Dark Gradient Overlay */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#1F2C2A]/90 via-[#1F2C2A]/75 md:via-[#1F2C2A]/60 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-[#1F2C2A]/95 via-[#1F2C2A]/80 md:via-[#1F2C2A]/65 to-transparent"
           aria-hidden="true"
         />
 
-        {/* Secondary subtle vertical overlay for mobile readability */}
-        <div
-          className="absolute inset-0 bg-black/20 md:hidden"
-          aria-hidden="true"
-        />
-
-        {/* Content over the left side of the image, vertically centered-low */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-24">
           <div className="max-w-xl lg:max-w-2xl">
-            {/* Breadcrumb Row - fades in first */}
+            {/* Breadcrumb Row */}
             <motion.nav
               aria-label="Breadcrumb"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+              transition={{ duration: 0.45, delay: 0.1, ease: 'easeOut' }}
               className="flex items-center space-x-2 text-sm sm:text-base text-white mb-4 sm:mb-5"
             >
               <button
                 type="button"
                 onClick={() => onNavigate('home')}
-                className="text-white/80 hover:text-white transition-colors duration-150 focus:outline-none focus:underline cursor-pointer"
+                className="text-white/80 hover:text-[#facc15] transition-colors cursor-pointer"
               >
                 Home
               </button>
@@ -71,26 +67,26 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 className="w-4 h-4 text-white/70 stroke-[2] shrink-0"
                 aria-hidden="true"
               />
-              <span className="font-semibold text-white tracking-wide" aria-current="page">
+              <span className="font-semibold text-[#facc15] tracking-wide" aria-current="page">
                 About Us
               </span>
             </motion.nav>
 
-            {/* Large Bold White Heading - slides up + fades in */}
+            {/* Large Bold White Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.22, ease: 'easeOut' }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-4 sm:mb-5"
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-4 sm:mb-5"
             >
               About Us
             </motion.h1>
 
-            {/* Two-line Subheading in Amber/Gold - slides up + fades in */}
+            {/* Two-line Subheading in Amber/Gold */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
               className="text-[#facc15] font-bold text-base sm:text-lg lg:text-xl leading-snug tracking-normal mb-4 sm:mb-5"
             >
               Built on integrity. Driven by Excellence.
@@ -99,12 +95,12 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               </span>
             </motion.h2>
 
-            {/* White Body Paragraph (85% opacity) - slides up + fades in */}
+            {/* White Body Paragraph */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
-              className="text-white/85 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-xl"
+              transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+              className="text-white/85 text-sm sm:text-base leading-relaxed font-normal max-w-xl"
             >
               Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
             </motion.p>
@@ -113,7 +109,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. WHO WE ARE SECTION (PHASE 2) */}
+      {/* 2. WHO WE ARE SECTION */}
       {/* ========================================================================= */}
       <section
         id="who-we-are"
@@ -121,7 +117,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* LEFT HALF (Desktop Left / Mobile Bottom) - slides in from the left */}
+            {/* LEFT HALF */}
             <motion.div
               id="who-we-are-content"
               initial={{ opacity: 0, x: -35 }}
@@ -142,29 +138,24 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               </h2>
 
               {/* Body Paragraph */}
-              <p className="text-gray-800 text-sm sm:text-base lg:text-[16px] leading-relaxed max-w-xl mb-8">
+              <p className="text-gray-800 text-sm sm:text-base leading-relaxed max-w-xl mb-8">
                 Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
               </p>
 
-              {/* Action Button with subtle whileHover scale */}
+              {/* Action Button */}
               <div>
-                <motion.a
-                  href="#management-structure"
-                  id="our-approach-btn"
-                  whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(31, 61, 46, 0.3)' }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
+                <button
+                  type="button"
+                  onClick={() => onNavigate('property-facilities')}
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm cursor-pointer"
                 >
-                  <span>Our Approach</span>
-                  <ArrowRight
-                    className="w-4 h-4 stroke-[2.5]"
-                    aria-hidden="true"
-                  />
-                </motion.a>
+                  <span>Explore Our Approach</span>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
+                </button>
               </div>
             </motion.div>
 
-            {/* RIGHT HALF (Desktop Right / Mobile Top) - slides in from the right */}
+            {/* RIGHT HALF */}
             <motion.div
               id="who-we-are-visual"
               initial={{ opacity: 0, x: 35 }}
@@ -174,18 +165,82 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               className="order-1 lg:order-2 lg:col-span-6"
             >
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gray-100 aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] group">
-                {/* Reception Lobby Image */}
                 <img
-                  src="/assets/reception_lobby.png"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (target.src.endsWith('/assets/reception_lobby.png')) {
-                      target.src = '/assets/reception_lobby.jpg';
-                    }
-                  }}
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
                   alt="Validreams modern reception lobby"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 3. EXPLICIT MISSION & VISION SECTION [SUGGESTED COPY — CLIENT TO REFINE] */}
+      {/* ========================================================================= */}
+      <section
+        id="mission-vision"
+        className="w-full bg-gray-50 border-y border-gray-200/80 py-16 sm:py-20 px-6 sm:px-10 lg:px-16"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Header strip with notice */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-10 pb-4 border-b border-gray-200">
+            <div>
+              <span className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase block">
+                STRATEGIC PURPOSE
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1F3D2E] tracking-tight">
+                Our Mission, Vision &amp; Strategic Mandate
+              </h2>
+            </div>
+            <span className="text-[11px] font-semibold text-amber-900 bg-amber-200/80 px-3 py-1 rounded-full uppercase tracking-wider">
+              [SUGGESTED COPY — client to refine]
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Mission Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="p-8 sm:p-10 rounded-2xl bg-white border border-gray-200/90 shadow-sm relative overflow-hidden group hover:border-[#1F3D2E]/40 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#1F3D2E] flex items-center justify-center mb-6">
+                <Target className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">
+                Our Mission
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                To deliver uncompromising property and facilities management excellence across Nigeria by deploying disciplined technical engineering, transparent fiscal stewardship, and technology-driven operations that preserve asset capital value and elevate occupant quality of life.
+              </p>
+              <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs text-gray-400 font-mono">
+                Mandate Pillar: Integrity &amp; Asset Preservation
+              </div>
+            </motion.div>
+
+            {/* Vision Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+              className="p-8 sm:p-10 rounded-2xl bg-white border border-gray-200/90 shadow-sm relative overflow-hidden group hover:border-[#1F3D2E]/40 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6">
+                <Eye className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">
+                Our Vision
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                To be recognized as Nigeria&apos;s most trusted and technologically adept facilities management partner — setting the national benchmark for sustainable building operations, tenant satisfaction, and institutional asset governance.
+              </p>
+              <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs text-gray-400 font-mono">
+                Mandate Pillar: Regional Benchmark &amp; Innovation
               </div>
             </motion.div>
           </div>
@@ -198,7 +253,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       <StatsBanner />
 
       {/* ========================================================================= */}
-      {/* 5. OUR VALUES SECTION (PHASE 4) */}
+      {/* 5. OUR VALUES SECTION */}
       {/* ========================================================================= */}
       <section
         id="our-values"
@@ -285,7 +340,6 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                       : ''
                   } ${idx < 5 ? 'lg:pr-5 xl:lg:pr-6' : ''}`}
                 >
-                  {/* Line Icon with scale-in */}
                   <motion.div
                     variants={{
                       hidden: { scale: 0.75, opacity: 0 },
@@ -303,12 +357,10 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     />
                   </motion.div>
 
-                  {/* Bold Dark Green Title */}
                   <h3 className="text-base sm:text-lg font-bold text-[#1F3D2E] mb-2 sm:mb-2.5 tracking-tight">
                     {value.title}
                   </h3>
 
-                  {/* Gray Description */}
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-[190px] sm:max-w-[210px]">
                     {value.description}
                   </p>
@@ -320,7 +372,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. OUR MANAGEMENT STRUCTURE SECTION (PHASE 5) */}
+      {/* 6. OUR MANAGEMENT STRUCTURE SECTION */}
       {/* ========================================================================= */}
       <section
         id="management-structure"
@@ -335,23 +387,20 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20"
           >
-            {/* Amber/Gold Eyebrow Label */}
             <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase mb-3 sm:mb-4">
               OUR MANAGEMENT STRUCTURE
             </p>
 
-            {/* Large Bold Heading in Dark Green */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F3D2E] tracking-tight leading-tight mb-4 sm:mb-5">
               Experienced People. Exceptional Service.
             </h2>
 
-            {/* Gray Body Paragraph */}
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              Our leadership team brings together deep industry knowledge, diverse expertise, and a shared commitment to delivering excellence in every projects we undertake.
+              Our leadership structure brings together deep industry knowledge, technical certifications, and a shared commitment to excellence across every property we manage.
             </p>
           </motion.div>
 
-          {/* Row of 5 Team Member Cards */}
+          {/* Row of 5 Team Member Roles */}
           <motion.div
             variants={{
               hidden: { opacity: 0 },
@@ -370,34 +419,29 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           >
             {[
               {
-                image: '/assets/team_manager.jpg',
-                fallback: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
                 title: 'Facilities Manager',
                 subtitle: 'Overall site management',
               },
               {
-                image: '/assets/team_technician.jpg',
-                fallback: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
                 title: 'Technicians',
                 subtitle: 'Maintenance support',
               },
               {
-                image: '/assets/team_soft_services.jpg',
-                fallback: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
                 title: 'Soft Services Supervisor',
-                subtitle: 'Maintenance support',
+                subtitle: 'Janitorial & Grounds',
               },
               {
-                image: '/assets/team_security.jpg',
-                fallback: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+                image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
                 title: 'Security Supervisor',
-                subtitle: 'Guard operations',
+                subtitle: 'Guard operations & Access',
               },
               {
-                image: '/assets/team_helpdesk.jpg',
-                fallback: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+                image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
                 title: 'Helpdesk Officer',
-                subtitle: 'Resident support & Complaints',
+                subtitle: 'Resident support & ticketing',
               },
             ].map((member, index) => (
               <motion.div
@@ -413,7 +457,6 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 }}
                 className="flex flex-col items-center text-center group"
               >
-                {/* Rounded-corner Portrait Photo (4:5 aspect ratio) with whileHover scale & shadow */}
                 <motion.div
                   whileHover={{
                     scale: 1.04,
@@ -425,23 +468,15 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 >
                   <img
                     src={member.image}
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (target.src !== member.fallback) {
-                        target.src = member.fallback;
-                      }
-                    }}
                     alt={member.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                 </motion.div>
 
-                {/* Bold Dark Title */}
                 <h3 className="text-base sm:text-[17px] font-bold text-[#1F3D2E] tracking-tight mb-1">
                   {member.title}
                 </h3>
 
-                {/* Smaller Gray Subtitle */}
                 <p className="text-xs sm:text-sm text-gray-500 font-normal">
                   {member.subtitle}
                 </p>
@@ -452,15 +487,14 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. CTA CARD SECTION */}
+      {/* 7. CTA CARD SECTION */}
       {/* ========================================================================= */}
-      <CtaCard />
+      <CtaCard onNavigate={onNavigate} />
 
       {/* ========================================================================= */}
-      {/* 7. FOOTER SECTION */}
+      {/* 8. FOOTER SECTION */}
       {/* ========================================================================= */}
       <Footer onNavigate={onNavigate} />
     </div>
   );
 }
-

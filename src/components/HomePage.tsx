@@ -15,10 +15,16 @@ import CtaCard from './CtaCard';
 import Footer from './Footer';
 
 interface HomePageProps {
-  onNavigate?: (page: string) => void;
+  onNavigate?: (page: string, subId?: string) => void;
 }
 
 export default function HomePage({ onNavigate }: HomePageProps) {
+  const handleNav = (target: string, subId?: string) => {
+    if (onNavigate) {
+      onNavigate(target, subId);
+    }
+  };
+
   return (
     <div className="w-full bg-white text-gray-900 font-sans antialiased selection:bg-amber-400 selection:text-slate-950">
       {/* ========================================================================= */}
@@ -37,7 +43,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           />
         </div>
 
-        {/* Dark Green Gradient Overlay (roughly #14281F) strongest on left, fading out toward the right */}
+        {/* Dark Green Gradient Overlay */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#14281F]/95 via-[#14281F]/80 md:via-[#14281F]/60 to-black/20"
           aria-hidden="true"
@@ -56,7 +62,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               PROPERTY &amp; FACILITIES MANAGEMENT
             </motion.p>
 
-            {/* Large bold headline: Two lines */}
+            {/* Large bold headline: Confirmed Authoritative "Built Around Excellence." */}
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -77,42 +83,44 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               We provide end-to-end property and facilities management solutions that enhance asset value, ensure safety, and deliver premium experience for residents and clients.
             </motion.p>
 
-            {/* Two buttons side by side */}
+            {/* Standardized CTA Action buttons */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.58, ease: 'easeOut' }}
               className="flex flex-wrap items-center gap-4 sm:gap-5"
             >
-              {/* Solid amber/gold "Our Services" button (dark text) with arrow */}
-              <motion.a
-                href="#services-section"
+              {/* Secondary verb "Explore Our Services" (or Our Services) */}
+              <motion.button
+                type="button"
                 id="btn-our-services"
                 whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(250, 204, 21, 0.4)' }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 bg-[#facc15] hover:bg-yellow-400 text-gray-950 font-bold text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-[#facc15] focus:ring-offset-2"
+                onClick={() => handleNav('services')}
+                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 bg-[#facc15] hover:bg-yellow-400 text-gray-950 font-bold text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-[#facc15] focus:ring-offset-2 cursor-pointer"
               >
-                <span>Our Services</span>
+                <span>Explore Our Services</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
-              </motion.a>
+              </motion.button>
 
-              {/* Outlined white "Contact Us" button with arrow */}
-              <motion.a
-                href="#contact"
+              {/* Primary standardized CTA verb "Get in Touch" */}
+              <motion.button
+                type="button"
                 id="btn-contact-us"
                 whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)' }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 bg-transparent text-white border border-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+                onClick={() => handleNav('contact')}
+                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 bg-transparent text-white border border-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               >
-                <span>Contact Us</span>
+                <span>Get in Touch</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
-              </motion.a>
+              </motion.button>
             </motion.div>
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* 3. STATS BANNER: Docked at bottom of Hero (matching screenshot) */}
+        {/* 3. STATS BANNER: Docked at bottom of Hero */}
         {/* ========================================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -136,7 +144,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     Trusted Expertise
                   </h2>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
-                    Years of experience in managing premium properties.
+                    Decades of combined technical leadership across prime assets.
                   </p>
                 </div>
               </div>
@@ -154,7 +162,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     24/7 Support
                   </h2>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
-                    Round-the-clock operations and responsive help-desk always available.
+                    Round-the-clock operations and responsive incident dispatch always on standby.
                   </p>
                 </div>
               </div>
@@ -172,7 +180,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     Technology Driven
                   </h2>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
-                    CAFM solutions for real-time monitoring, reporting and performance tracking.
+                    CAFM platforms for real-time ticket escalation, SLA auditing, and preventive schedules.
                   </p>
                 </div>
               </div>
@@ -190,7 +198,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     Client Focused
                   </h2>
                   <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
-                    We prioritize transparency, communication and resident satisfaction.
+                    Transparent service charges, proactive communication, and resident satisfaction.
                   </p>
                 </div>
               </div>
@@ -200,17 +208,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. SERVICES SECTION (PHASE 2) */}
+      {/* 4. SERVICES SECTION: 8 Core Services */}
       {/* ========================================================================= */}
-      <ServicesSection />
+      <ServicesSection
+        onNavigate={onNavigate}
+        onViewAll={() => handleNav('services')}
+      />
 
       {/* ========================================================================= */}
-      {/* 5. WHY CHOOSE US SECTION (PHASE 3) */}
+      {/* 5. WHY CHOOSE US SECTION */}
       {/* ========================================================================= */}
       <WhyChooseUs />
 
       {/* ========================================================================= */}
-      {/* 6. OUR APPROACH SECTION (PHASE 4) */}
+      {/* 6. OUR APPROACH SECTION */}
       {/* ========================================================================= */}
       <OurApproach />
 
@@ -222,7 +233,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       {/* ========================================================================= */}
       {/* 8. CTA CARD SECTION */}
       {/* ========================================================================= */}
-      <CtaCard />
+      <CtaCard onNavigate={onNavigate} />
 
       {/* ========================================================================= */}
       {/* 9. FOOTER SECTION */}

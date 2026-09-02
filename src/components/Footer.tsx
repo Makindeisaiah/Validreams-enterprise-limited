@@ -36,14 +36,14 @@ export default function Footer({ onNavigate }: FooterProps) {
   };
 
   const services = [
-    'Property & Rent Management',
-    'Technical & Maintenance',
-    'Soft Services',
-    'Security Management',
-    'Administrative & Financial Management',
-    'CAFM',
-    'Consulting',
-    'Real Estate Services',
+    { name: 'Property & Rent Management', slug: 'property-rent-management' },
+    { name: 'Technical & Maintenance', slug: 'technical-maintenance' },
+    { name: 'Soft Services', slug: 'soft-services' },
+    { name: 'Security Management', slug: 'security-management' },
+    { name: 'Administrative & Financial Management', slug: 'administrative-financial-management' },
+    { name: 'CAFM Solutions', slug: 'cafm' },
+    { name: 'Consulting', slug: 'consulting' },
+    { name: 'Real Estate Services', slug: 'real-estate-services' },
   ];
 
   return (
@@ -157,12 +157,19 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h3>
             <ul className="space-y-2.5">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.slug}>
                   <a
-                    href="#services"
-                    className="text-white/80 hover:text-white hover:underline text-sm sm:text-[14.5px] transition-colors block py-0.5"
+                    href={`#service-${service.slug}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onNavigate) {
+                        onNavigate(`service-${service.slug}`);
+                      }
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="text-white/80 hover:text-white hover:underline text-sm sm:text-[14.5px] transition-colors block py-0.5 cursor-pointer"
                   >
-                    {service}
+                    {service.name}
                   </a>
                 </li>
               ))}
@@ -183,14 +190,14 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </span>
               </div>
 
-              {/* Phone */}
+              {/* Phone - Authoritative */}
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-white shrink-0 stroke-[1.8]" />
                 <a
-                  href="tel:+2348026668355"
-                  className="hover:underline transition-colors"
+                  href="tel:+2348026868355"
+                  className="hover:underline transition-colors font-medium tracking-wide"
                 >
-                  +234 802 666 8355
+                  +234 802 686 8355
                 </a>
               </div>
 
@@ -232,14 +239,22 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-14 sm:mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/75">
           <p>
-            2026 Validreams Enterprise Limited. All Right Reserved.
+            &copy; 2026 Validreams Enterprises Limited. All Rights Reserved.
           </p>
           <div className="flex items-center space-x-2">
-            <a href="#privacy" className="hover:text-white transition-colors hover:underline">
+            <a
+              href="#privacy"
+              onClick={(e) => handleLinkClick(e, 'privacy')}
+              className="hover:text-white transition-colors hover:underline cursor-pointer"
+            >
               Privacy Policy
             </a>
             <span className="text-white/40">|</span>
-            <a href="#terms" className="hover:text-white transition-colors hover:underline">
+            <a
+              href="#terms"
+              onClick={(e) => handleLinkClick(e, 'terms')}
+              className="hover:text-white transition-colors hover:underline cursor-pointer"
+            >
               Terms &amp; Conditions
             </a>
           </div>

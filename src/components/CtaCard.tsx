@@ -2,7 +2,11 @@ import React from 'react';
 import { Phone, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function CtaCard() {
+interface CtaCardProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function CtaCard({ onNavigate }: CtaCardProps) {
   return (
     <section
       id="cta-section"
@@ -65,22 +69,30 @@ export default function CtaCard() {
               </div>
 
               {/* Solid Dark Green Rounded Button */}
-              <motion.a
-                href="#contact"
-                id="cta-talk-team-btn"
+              <motion.button
+                type="button"
+                id="cta-get-in-touch-btn"
+                onClick={() => {
+                  if (onNavigate) {
+                    onNavigate('contact');
+                  } else {
+                    const el = document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 whileHover={{
                   scale: 1.03,
                   boxShadow: '0 12px 24px -6px rgba(31, 61, 46, 0.35)',
                 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2 cursor-pointer"
               >
-                <span>Talk to Our Team</span>
+                <span>Get in Touch</span>
                 <ArrowRight
                   className="w-4 h-4 stroke-[2.5]"
                   aria-hidden="true"
                 />
-              </motion.a>
+              </motion.button>
             </div>
           </div>
         </motion.div>
