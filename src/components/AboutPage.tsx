@@ -2,9 +2,6 @@ import React from 'react';
 import {
   ChevronRight,
   ArrowRight,
-  Building2,
-  Users,
-  Settings,
   ShieldCheck,
   Award,
   UserCheck,
@@ -12,6 +9,8 @@ import {
   Lightbulb,
   Leaf,
 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import StatsBanner from './StatsBanner';
 import CtaCard from './CtaCard';
 import Footer from './Footer';
 
@@ -53,9 +52,12 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
         {/* Content over the left side of the image, vertically centered-low */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-24">
           <div className="max-w-xl lg:max-w-2xl">
-            {/* Breadcrumb Row */}
-            <nav
+            {/* Breadcrumb Row - fades in first */}
+            <motion.nav
               aria-label="Breadcrumb"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
               className="flex items-center space-x-2 text-sm sm:text-base text-white mb-4 sm:mb-5"
             >
               <button
@@ -72,25 +74,40 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               <span className="font-semibold text-white tracking-wide" aria-current="page">
                 About Us
               </span>
-            </nav>
+            </motion.nav>
 
-            {/* Large Bold White Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-4 sm:mb-5">
+            {/* Large Bold White Heading - slides up + fades in */}
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.22, ease: 'easeOut' }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-4 sm:mb-5"
+            >
               About Us
-            </h1>
+            </motion.h1>
 
-            {/* Two-line Subheading in Amber/Gold */}
-            <h2 className="text-[#facc15] font-bold text-base sm:text-lg lg:text-xl leading-snug tracking-normal mb-4 sm:mb-5">
+            {/* Two-line Subheading in Amber/Gold - slides up + fades in */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
+              className="text-[#facc15] font-bold text-base sm:text-lg lg:text-xl leading-snug tracking-normal mb-4 sm:mb-5"
+            >
               Built on integrity. Driven by Excellence.
               <span className="block mt-0.5 sm:mt-1">
                 Committed to Your Property&apos;s Success.
               </span>
-            </h2>
+            </motion.h2>
 
-            {/* White Body Paragraph (85% opacity) */}
-            <p className="text-white/85 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-xl">
+            {/* White Body Paragraph (85% opacity) - slides up + fades in */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.48, ease: 'easeOut' }}
+              className="text-white/85 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-xl"
+            >
               Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -104,9 +121,13 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* LEFT HALF (Desktop Left / Mobile Bottom) */}
-            <div
+            {/* LEFT HALF (Desktop Left / Mobile Bottom) - slides in from the left */}
+            <motion.div
               id="who-we-are-content"
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center"
             >
               {/* Eyebrow Label */}
@@ -125,25 +146,31 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
               </p>
 
-              {/* Action Button */}
+              {/* Action Button with subtle whileHover scale */}
               <div>
-                <a
+                <motion.a
                   href="#management-structure"
                   id="our-approach-btn"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-all duration-200 shadow-sm hover:shadow-md group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
+                  whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(31, 61, 46, 0.3)' }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
                 >
                   <span>Our Approach</span>
                   <ArrowRight
-                    className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1"
+                    className="w-4 h-4 stroke-[2.5]"
                     aria-hidden="true"
                   />
-                </a>
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
 
-            {/* RIGHT HALF (Desktop Right / Mobile Top) */}
-            <div
+            {/* RIGHT HALF (Desktop Right / Mobile Top) - slides in from the right */}
+            <motion.div
               id="who-we-are-visual"
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
               className="order-1 lg:order-2 lg:col-span-6"
             >
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gray-100 aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] group">
@@ -160,7 +187,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -168,82 +195,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       {/* ========================================================================= */}
       {/* 4. STATS BANNER SECTION */}
       {/* ========================================================================= */}
-      <section
-        id="stats-banner"
-        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16"
-      >
-        {/* Full-bleed night-time cityscape / luxury building photo background */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2400&q=85"
-            alt="Night architectural luxury building skyline"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
-        {/* Dark overlay (roughly 55-65% opacity) */}
-        <div
-          className="absolute inset-0 bg-slate-950/60 backdrop-brightness-75"
-          aria-hidden="true"
-        />
-
-        {/* 4-Column Stat Items Container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-8 text-center items-center justify-between">
-            {/* Stat 1: Properties Managed */}
-            <div id="stat-properties" className="flex flex-col items-center group">
-              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
-                <Building2 className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
-              </div>
-              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
-                15+
-              </p>
-              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
-                Properties Managed
-              </p>
-            </div>
-
-            {/* Stat 2: Expert Professionals */}
-            <div id="stat-professionals" className="flex flex-col items-center group">
-              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
-                <Users className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
-              </div>
-              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
-                100+
-              </p>
-              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
-                Expert Professionals
-              </p>
-            </div>
-
-            {/* Stat 3: Operational Support */}
-            <div id="stat-support" className="flex flex-col items-center group">
-              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
-                <Settings className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
-              </div>
-              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
-                24/7
-              </p>
-              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
-                Operational Support
-              </p>
-            </div>
-
-            {/* Stat 4: Client Satisfaction */}
-            <div id="stat-satisfaction" className="flex flex-col items-center group">
-              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
-                <ShieldCheck className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
-              </div>
-              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
-                98%
-              </p>
-              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
-                Client Satisfaction
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsBanner />
 
       {/* ========================================================================= */}
       {/* 5. OUR VALUES SECTION (PHASE 4) */}
@@ -254,14 +206,34 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
           {/* Centered Eyebrow Label on its own */}
-          <div className="text-center mb-14 sm:mb-18 lg:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="text-center mb-14 sm:mb-18 lg:mb-20"
+          >
             <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase">
               OUR VALUES
             </p>
-          </div>
+          </motion.div>
 
           {/* 6 Value Items in a single row on desktop with gold border-left dividers */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 sm:gap-y-14 lg:gap-y-0">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 sm:gap-y-14 lg:gap-y-0"
+          >
             {[
               {
                 icon: ShieldCheck,
@@ -296,22 +268,40 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             ].map((value, idx) => {
               const IconComponent = value.icon;
               return (
-                <div
+                <motion.div
                   key={value.title}
                   id={`value-${value.title.toLowerCase()}`}
+                  variants={{
+                    hidden: { opacity: 0, y: 25 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.5, ease: 'easeOut' },
+                    },
+                  }}
                   className={`flex flex-col items-center text-center justify-start ${
                     idx > 0
                       ? 'lg:border-l lg:border-[#facc15] lg:pl-5 xl:lg:pl-6'
                       : ''
                   } ${idx < 5 ? 'lg:pr-5 xl:lg:pr-6' : ''}`}
                 >
-                  {/* Line Icon */}
-                  <div className="flex items-center justify-center mb-5 sm:mb-6">
+                  {/* Line Icon with scale-in */}
+                  <motion.div
+                    variants={{
+                      hidden: { scale: 0.75, opacity: 0 },
+                      show: {
+                        scale: 1,
+                        opacity: 1,
+                        transition: { duration: 0.4, ease: 'easeOut' },
+                      },
+                    }}
+                    className="flex items-center justify-center mb-5 sm:mb-6"
+                  >
                     <IconComponent
                       className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F3D2E] stroke-[1.75]"
                       aria-hidden="true"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Bold Dark Green Title */}
                   <h3 className="text-base sm:text-lg font-bold text-[#1F3D2E] mb-2 sm:mb-2.5 tracking-tight">
@@ -322,10 +312,10 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-[190px] sm:max-w-[210px]">
                     {value.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -338,7 +328,13 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
           {/* Centered Header Block */}
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20"
+          >
             {/* Amber/Gold Eyebrow Label */}
             <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase mb-3 sm:mb-4">
               OUR MANAGEMENT STRUCTURE
@@ -353,10 +349,25 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
               Our leadership team brings together deep industry knowledge, diverse expertise, and a shared commitment to delivering excellence in every projects we undertake.
             </p>
-          </div>
+          </motion.div>
 
           {/* Row of 5 Team Member Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-7 lg:gap-6 items-start">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-7 lg:gap-6 items-start"
+          >
             {[
               {
                 image: '/assets/team_manager.jpg',
@@ -389,13 +400,29 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 subtitle: 'Resident support & Complaints',
               },
             ].map((member, index) => (
-              <div
+              <motion.div
                 key={member.title}
                 id={`team-member-${index + 1}`}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.5, ease: 'easeOut' },
+                  },
+                }}
                 className="flex flex-col items-center text-center group"
               >
-                {/* Rounded-corner Portrait Photo (4:5 aspect ratio) */}
-                <div className="w-full aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200/70 mb-4 transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
+                {/* Rounded-corner Portrait Photo (4:5 aspect ratio) with whileHover scale & shadow */}
+                <motion.div
+                  whileHover={{
+                    scale: 1.04,
+                    boxShadow:
+                      '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                  }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="w-full aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200/70 mb-4 cursor-pointer"
+                >
                   <img
                     src={member.image}
                     onError={(e) => {
@@ -407,7 +434,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     alt={member.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
+                </motion.div>
 
                 {/* Bold Dark Title */}
                 <h3 className="text-base sm:text-[17px] font-bold text-[#1F3D2E] tracking-tight mb-1">
@@ -418,9 +445,9 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 <p className="text-xs sm:text-sm text-gray-500 font-normal">
                   {member.subtitle}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -436,3 +463,4 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
     </div>
   );
 }
+

@@ -3,7 +3,7 @@ import { Building2, Users, Settings, ShieldCheck } from 'lucide-react';
 import { motion, useInView, animate } from 'framer-motion';
 
 function StatCounter({ value }: { value: string }) {
-  const [displayValue, setDisplayValue] = useState('0');
+  const [displayValue, setDisplayValue] = useState(value === '24/7' ? '24/7' : '0');
   const ref = useRef<HTMLParagraphElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -11,14 +11,8 @@ function StatCounter({ value }: { value: string }) {
     if (!isInView) return;
 
     if (value === '24/7') {
-      const controls = animate(0, 24, {
-        duration: 1.5,
-        ease: 'easeOut',
-        onUpdate: (latest) => {
-          setDisplayValue(`${Math.round(latest)}/7`);
-        },
-      });
-      return () => controls.stop();
+      setDisplayValue('24/7');
+      return;
     }
 
     const numericMatch = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
