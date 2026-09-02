@@ -6,6 +6,8 @@ import {
   Monitor,
   Users,
 } from 'lucide-react';
+import ServicesSection from './ServicesSection';
+import WhyChooseUs from './WhyChooseUs';
 
 interface HomePageProps {
   onNavigate?: (page: string) => void;
@@ -59,7 +61,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <div className="flex flex-wrap items-center gap-4 sm:gap-5">
               {/* Solid amber/gold "Our Services" button (dark text) with arrow */}
               <a
-                href="#services"
+                href="#services-section"
                 id="btn-our-services"
                 className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 bg-[#facc15] hover:bg-yellow-400 text-gray-950 font-bold text-sm sm:text-base rounded-lg transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#facc15] focus:ring-offset-2"
               >
@@ -161,6 +163,16 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 4. SERVICES SECTION (PHASE 2) */}
+      {/* ========================================================================= */}
+      <ServicesSection />
+
+      {/* ========================================================================= */}
+      {/* 5. WHY CHOOSE US SECTION (PHASE 3) */}
+      {/* ========================================================================= */}
+      <WhyChooseUs />
     </div>
   );
 }
