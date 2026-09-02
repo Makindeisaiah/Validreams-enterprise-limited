@@ -8,16 +8,31 @@ import {
   Instagram,
 } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps) {
   const quickLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About Us', href: '#about-hero-banner' },
-    { name: 'Services', href: '#services' },
-    { name: 'Property & Facilities', href: '#facilities' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Insights', href: '#insights' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'Home', id: 'home' },
+    { name: 'About Us', id: 'about' },
+    { name: 'Services', id: 'services' },
+    { name: 'Property & Facilities', id: 'facilities' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Insights', id: 'insights' },
+    { name: 'Contact Us', id: 'contact' },
   ];
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    pageId: string
+  ) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(pageId);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const services = [
     'Property & Rent Management',
@@ -33,7 +48,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="w-full bg-[#3D6B57] text-white pt-36 sm:pt-40 lg:pt-48 pb-10 sm:pb-12"
+      className="w-full bg-[#3D6B57] text-white pt-16 sm:pt-20 pb-10 sm:pb-12"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* 4-Column Grid with thin vertical dividers on desktop */}
@@ -41,19 +56,28 @@ export default function Footer() {
           {/* COLUMN 1: Brand Logo, Tagline & Social Icons */}
           <div className="lg:col-span-4 lg:pr-10 flex flex-col justify-between">
             <div>
-              {/* Validreams Logo */}
+              {/* Validreams Logo with transparent background (no white box) */}
               <div className="mb-6">
-                <img
-                  src="./assets/logo.png"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (target.src.endsWith('/assets/logo.png')) {
-                      target.src = '/logo.png';
-                    }
-                  }}
-                  alt="Validreams Enterprises Limited"
-                  className="h-16 sm:h-20 w-auto object-contain brightness-0 invert opacity-95"
-                />
+                <a
+                  href="#home"
+                  onClick={(e) => handleLinkClick(e, 'home')}
+                  className="inline-block focus:outline-none focus:ring-2 focus:ring-[#facc15] rounded"
+                  aria-label="Validreams Home"
+                >
+                  <img
+                    src="/assets/logo_white.png"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.endsWith('/assets/logo_white.png')) {
+                        target.src = '/assets/logo_transparent.png';
+                      } else if (target.src.endsWith('/assets/logo_transparent.png')) {
+                        target.src = '/assets/logo.png';
+                      }
+                    }}
+                    alt="Validreams Enterprises Limited"
+                    className="h-16 sm:h-20 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity"
+                  />
+                </a>
               </div>
 
               {/* Tagline */}
@@ -110,8 +134,9 @@ export default function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
-                    href={link.href}
-                    className="text-white/80 hover:text-white hover:underline text-sm sm:text-[14.5px] transition-colors block py-0.5"
+                    href={`#${link.id}`}
+                    onClick={(e) => handleLinkClick(e, link.id)}
+                    className="text-white/80 hover:text-white hover:underline text-sm sm:text-[14.5px] transition-colors block py-0.5 cursor-pointer"
                   >
                     {link.name}
                   </a>

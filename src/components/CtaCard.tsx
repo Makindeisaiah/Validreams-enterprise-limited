@@ -3,74 +3,76 @@ import { Phone, ArrowRight } from 'lucide-react';
 
 export default function CtaCard() {
   return (
-    <div
+    <section
       id="cta-section"
-      className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 -mb-24 sm:-mb-28 lg:-mb-32 z-20"
+      className="w-full bg-white py-16 sm:py-20 lg:py-24"
     >
-      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 lg:p-10 xl:p-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
-          {/* LEFT COLUMN: Heading & Subtext */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1F3D2E] tracking-tight leading-[1.2] mb-4">
-              Let&apos;s Take Better Care
-              <span className="block mt-1">of Your Property</span>
-            </h2>
-            <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-sm">
-              Partner with Validreams for reliable, innovative and result-driven property and facilities management
-            </p>
-          </div>
-
-          {/* CENTER COLUMN: Property Image */}
-          <div className="lg:col-span-4 flex justify-center">
-            <div className="w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-md bg-gray-100 border border-gray-100 group">
-              <img
-                src="/assets/property_cta.jpg"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.src =
-                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80';
-                }}
-                alt="Modern luxury property with lush greenery and hillside views"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100/80 p-6 sm:p-8 lg:p-10 xl:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+            {/* LEFT COLUMN: Heading & Subtext */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1F3D2E] tracking-tight leading-[1.2] mb-4">
+                Let&apos;s Take Better Care
+                <span className="block mt-1">of Your Property</span>
+              </h2>
+              <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-sm">
+                Partner with Validreams for reliable, innovative and result-driven property and facilities management
+              </p>
             </div>
-          </div>
 
-          {/* RIGHT COLUMN: Badge, Text & Button */}
-          <div className="lg:col-span-3 flex flex-col justify-center items-start lg:pl-4 space-y-5">
-            {/* Phone Badge & Text */}
-            <div className="flex items-center space-x-3.5">
-              <div
-                className="w-11 h-11 rounded-full bg-[#facc15] flex items-center justify-center shrink-0 shadow-sm"
-                aria-hidden="true"
+            {/* CENTER COLUMN: Property Image */}
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-sm bg-gray-100 border border-gray-100 group">
+                <img
+                  src="/assets/property_cta.jpg"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.src =
+                      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80';
+                  }}
+                  alt="Modern luxury property with lush greenery and hillside views"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN: Badge, Text & Button */}
+            <div className="lg:col-span-3 flex flex-col justify-center items-start lg:pl-4 space-y-5">
+              {/* Phone Badge & Text */}
+              <div className="flex items-center space-x-3.5">
+                <div
+                  className="w-11 h-11 rounded-full bg-[#facc15] flex items-center justify-center shrink-0 shadow-sm"
+                  aria-hidden="true"
+                >
+                  <Phone className="w-5 h-5 text-white stroke-[2.2]" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-[17px] font-bold text-gray-900 leading-tight">
+                    Ready to Get Started?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                    Speak with our team today.
+                  </p>
+                </div>
+              </div>
+
+              {/* Solid Dark Green Rounded Button */}
+              <a
+                href="#contact"
+                id="cta-talk-team-btn"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-all duration-200 shadow-sm hover:shadow-md group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
               >
-                <Phone className="w-5 h-5 text-white stroke-[2.2]" />
-              </div>
-              <div>
-                <h3 className="text-base sm:text-[17px] font-bold text-gray-900 leading-tight">
-                  Ready to Get Started?
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-                  Speak with our team today.
-                </p>
-              </div>
+                <span>Talk to Our Team</span>
+                <ArrowRight
+                  className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
             </div>
-
-            {/* Solid Dark Green Rounded Button */}
-            <a
-              href="#contact"
-              id="cta-talk-team-btn"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-all duration-200 shadow-sm hover:shadow-md group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
-            >
-              <span>Talk to Our Team</span>
-              <ArrowRight
-                className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

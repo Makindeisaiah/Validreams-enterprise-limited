@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ChevronRight,
   Menu,
@@ -16,18 +16,55 @@ import {
 } from 'lucide-react';
 import CtaCard from './components/CtaCard';
 import Footer from './components/Footer';
+import HomePage from './components/HomePage';
 
-export default function AboutUsPage() {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Sync with URL hash if user navigates with browser buttons or initial URL
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase().replace('#', '');
+      if (hash === 'home') {
+        setCurrentPage('home');
+      } else if (hash === 'about' || hash === 'about-us') {
+        setCurrentPage('about');
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleNavigate = (pageId: string) => {
+    if (pageId === 'home') {
+      setCurrentPage('home');
+      window.location.hash = 'home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (pageId === 'about' || pageId === 'about-us') {
+      setCurrentPage('about');
+      window.location.hash = 'about';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If navigating to an anchor section (like services or contact)
+      const element = document.getElementById(pageId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#', active: false },
-    { name: 'About', href: '#', active: true },
-    { name: 'Services', href: '#services', active: false },
-    { name: 'Property & Facilities', href: '#facilities', active: false },
-    { name: 'Projects', href: '#projects', active: false },
-    { name: 'Insights', href: '#insights', active: false },
-    { name: 'Contact Us', href: '#contact', active: false },
+    { name: 'Home', id: 'home', active: currentPage === 'home' },
+    { name: 'About', id: 'about', active: currentPage === 'about' },
+    { name: 'Services', id: 'services', active: false },
+    { name: 'Property & Facilities', id: 'facilities', active: false },
+    { name: 'Projects', id: 'projects', active: false },
+    { name: 'Insights', id: 'insights', active: false },
+    { name: 'Contact Us', id: 'contact', active: false },
   ];
 
   return (
@@ -43,8 +80,12 @@ export default function AboutUsPage() {
           <div className="flex items-center justify-between h-24 sm:h-28">
             {/* Logo Image */}
             <a
-              href="#"
+              href="#home"
               id="brand-logo"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigate('home');
+              }}
               className="flex items-center py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 rounded"
               aria-label="Validreams Enterprises Limited"
             >
@@ -69,17 +110,18 @@ export default function AboutUsPage() {
               aria-label="Main Navigation"
             >
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  className={`text-[15px] transition-colors py-1.5 focus:outline-none focus:text-amber-500 ${
+                  type="button"
+                  onClick={() => handleNavigate(link.id)}
+                  className={`text-[15px] transition-colors py-1.5 focus:outline-none focus:text-amber-500 cursor-pointer ${
                     link.active
                       ? 'text-[#facc15] font-semibold'
                       : 'text-gray-600 hover:text-gray-900 font-medium'
                   }`}
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
             </nav>
 
@@ -110,94 +152,100 @@ export default function AboutUsPage() {
             className="lg:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 space-y-1 shadow-lg"
           >
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2.5 rounded-md text-base transition-colors ${
+                type="button"
+                onClick={() => handleNavigate(link.id)}
+                className={`w-full text-left block px-3 py-2.5 rounded-md text-base transition-colors cursor-pointer ${
                   link.active
                     ? 'text-amber-500 font-bold bg-amber-50/70'
                     : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium'
                 }`}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
         )}
       </header>
 
-      {/* ========================================================================= */}
-      {/* 2. HERO / BANNER SECTION (ABOUT US) */}
-      {/* ========================================================================= */}
-      <section
-        id="about-hero-banner"
-        className="relative w-full min-h-[550px] sm:min-h-[580px] lg:min-h-[600px] flex items-center overflow-hidden bg-[#1F2C2A]"
-      >
-        {/* Full-Bleed Background Photo: Modern Luxury Residential Building at Dusk */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2400&q=85"
-            alt="Modern luxury residential building at dusk with warm interior lighting"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
-        {/* Dark Gradient Overlay: slate/green-gray (#1F2C2A) ~75-80% on the left, fading to transparent on the right */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#1F2C2A]/90 via-[#1F2C2A]/75 md:via-[#1F2C2A]/60 to-transparent"
-          aria-hidden="true"
-        />
-
-        {/* Secondary subtle vertical overlay for mobile readability */}
-        <div
-          className="absolute inset-0 bg-black/20 md:hidden"
-          aria-hidden="true"
-        />
-
-        {/* Content over the left side of the image, vertically centered-low */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-xl lg:max-w-2xl">
-            {/* Breadcrumb Row */}
-            <nav
-              aria-label="Breadcrumb"
-              className="flex items-center space-x-2 text-sm sm:text-base text-white mb-4 sm:mb-5"
-            >
-              <a
-                href="#"
-                className="text-white/80 hover:text-white transition-colors duration-150 focus:outline-none focus:underline"
-              >
-                Home
-              </a>
-              <ChevronRight
-                className="w-4 h-4 text-white/70 stroke-[2] shrink-0"
-                aria-hidden="true"
+      {/* PAGE VIEW SWITCHER */}
+      {currentPage === 'home' ? (
+        <HomePage onNavigate={handleNavigate} />
+      ) : (
+        <>
+          {/* ========================================================================= */}
+          {/* 2. HERO / BANNER SECTION (ABOUT US) */}
+          {/* ========================================================================= */}
+          <section
+            id="about-hero-banner"
+            className="relative w-full min-h-[550px] sm:min-h-[580px] lg:min-h-[600px] flex items-center overflow-hidden bg-[#1F2C2A]"
+          >
+            {/* Full-Bleed Background Photo: Modern Luxury Residential Building at Dusk */}
+            <div className="absolute inset-0 w-full h-full">
+              <img
+                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2400&q=85"
+                alt="Modern luxury residential building at dusk with warm interior lighting"
+                className="w-full h-full object-cover object-center"
               />
-              <span className="font-semibold text-white tracking-wide" aria-current="page">
-                About Us
-              </span>
-            </nav>
+            </div>
 
-            {/* Large Bold White Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-4 sm:mb-5">
-              About Us
-            </h1>
+            {/* Dark Gradient Overlay: slate/green-gray (#1F2C2A) ~75-80% on the left, fading to transparent on the right */}
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-[#1F2C2A]/90 via-[#1F2C2A]/75 md:via-[#1F2C2A]/60 to-transparent"
+              aria-hidden="true"
+            />
 
-            {/* Two-line Subheading in Amber/Gold */}
-            <h2 className="text-[#facc15] font-bold text-base sm:text-lg lg:text-xl leading-snug tracking-normal mb-4 sm:mb-5">
-              Built on integrity. Driven by Excellence.
-              <span className="block mt-0.5 sm:mt-1">
-                Committed to Your Property&apos;s Success.
-              </span>
-            </h2>
+            {/* Secondary subtle vertical overlay for mobile readability */}
+            <div
+              className="absolute inset-0 bg-black/20 md:hidden"
+              aria-hidden="true"
+            />
 
-            {/* White Body Paragraph (85% opacity) */}
-            <p className="text-white/85 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-xl">
-              Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
-            </p>
-          </div>
-        </div>
-      </section>
+            {/* Content over the left side of the image, vertically centered-low */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-24">
+              <div className="max-w-xl lg:max-w-2xl">
+                {/* Breadcrumb Row */}
+                <nav
+                  aria-label="Breadcrumb"
+                  className="flex items-center space-x-2 text-sm sm:text-base text-white mb-4 sm:mb-5"
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleNavigate('home')}
+                    className="text-white/80 hover:text-white transition-colors duration-150 focus:outline-none focus:underline cursor-pointer"
+                  >
+                    Home
+                  </button>
+                  <ChevronRight
+                    className="w-4 h-4 text-white/70 stroke-[2] shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-semibold text-white tracking-wide" aria-current="page">
+                    About Us
+                  </span>
+                </nav>
+
+                {/* Large Bold White Heading */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none mb-4 sm:mb-5">
+                  About Us
+                </h1>
+
+                {/* Two-line Subheading in Amber/Gold */}
+                <h2 className="text-[#facc15] font-bold text-base sm:text-lg lg:text-xl leading-snug tracking-normal mb-4 sm:mb-5">
+                  Built on integrity. Driven by Excellence.
+                  <span className="block mt-0.5 sm:mt-1">
+                    Committed to Your Property&apos;s Success.
+                  </span>
+                </h2>
+
+                {/* White Body Paragraph (85% opacity) */}
+                <p className="text-white/85 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal max-w-xl">
+                  Validreams Enterprise Limited is a professional Property and Facilities Management company dedicated to delivering reliable, technology-driven, and premium service solutions that enhance asset value and improve the living and working experience.
+                </p>
+              </div>
+            </div>
+          </section>
 
       {/* ========================================================================= */}
       {/* 3. WHO WE ARE SECTION (PHASE 2) */}
@@ -536,7 +584,9 @@ export default function AboutUsPage() {
       {/* ========================================================================= */}
       {/* 8. FOOTER SECTION */}
       {/* ========================================================================= */}
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
+        </>
+      )}
     </div>
   );
 }
