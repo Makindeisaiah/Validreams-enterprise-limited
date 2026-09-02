@@ -954,8 +954,8 @@ export default function App() {
               className="lg:col-span-4 lg:pr-10 flex flex-col justify-between"
             >
               <div>
-                {/* Logo chip for contrast on dark green background */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-2.5 px-3.5 inline-block shadow-sm mb-6 max-w-[170px]">
+                {/* Logo directly on green background */}
+                <div className="mb-6">
                   <img
                     src="./assets/logo.png"
                     onError={(e) => {
@@ -965,7 +965,7 @@ export default function App() {
                       }
                     }}
                     alt="Validreams Enterprises Limited"
-                    className="w-full h-auto object-contain max-h-12"
+                    className="w-44 sm:w-48 h-auto object-contain mix-blend-multiply"
                   />
                 </div>
 
