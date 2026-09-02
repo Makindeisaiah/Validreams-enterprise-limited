@@ -8,6 +8,11 @@ import {
   Users,
   Settings,
   ShieldCheck,
+  Award,
+  UserCheck,
+  Handshake,
+  Lightbulb,
+  Leaf,
 } from 'lucide-react';
 
 export default function AboutUsPage() {
@@ -338,6 +343,90 @@ export default function AboutUsPage() {
                 Client Satisfaction
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 5. OUR VALUES SECTION (PHASE 4) */}
+      {/* ========================================================================= */}
+      <section
+        id="our-values"
+        className="w-full bg-white text-gray-900 py-20 sm:py-24 lg:py-28"
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+          {/* Centered Eyebrow Label on its own */}
+          <div className="text-center mb-14 sm:mb-18 lg:mb-20">
+            <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase">
+              OUR VALUES
+            </p>
+          </div>
+
+          {/* 6 Value Items in a single row on desktop with gold border-left dividers */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 sm:gap-y-14 lg:gap-y-0">
+            {[
+              {
+                icon: ShieldCheck,
+                title: 'Integrity',
+                description: 'We do what is right always',
+              },
+              {
+                icon: Award,
+                title: 'Excellence',
+                description: 'We strive for the highest standards',
+              },
+              {
+                icon: UserCheck,
+                title: 'Accountability',
+                description: 'We take ownership of every responsibility.',
+              },
+              {
+                icon: Handshake,
+                title: 'Professionalism',
+                description: 'We deliver with skill and respect.',
+              },
+              {
+                icon: Lightbulb,
+                title: 'Sustainability',
+                description: 'We protect resources for the future.',
+              },
+              {
+                icon: Leaf,
+                title: 'Innovation',
+                description: 'We embrace technology to drive better outcomes.',
+              },
+            ].map((value, idx) => {
+              const IconComponent = value.icon;
+              return (
+                <div
+                  key={value.title}
+                  id={`value-${value.title.toLowerCase()}`}
+                  className={`flex flex-col items-center text-center justify-start ${
+                    idx > 0
+                      ? 'lg:border-l lg:border-[#facc15] lg:pl-5 xl:lg:pl-6'
+                      : ''
+                  } ${idx < 5 ? 'lg:pr-5 xl:lg:pr-6' : ''}`}
+                >
+                  {/* Line Icon */}
+                  <div className="flex items-center justify-center mb-5 sm:mb-6">
+                    <IconComponent
+                      className="w-9 h-9 sm:w-10 sm:h-10 text-[#1F3D2E] stroke-[1.75]"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  {/* Bold Dark Green Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-[#1F3D2E] mb-2 sm:mb-2.5 tracking-tight">
+                    {value.title}
+                  </h3>
+
+                  {/* Gray Description */}
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-[190px] sm:max-w-[210px]">
+                    {value.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
