@@ -8,6 +8,10 @@ import {
 } from 'lucide-react';
 import ServicesSection from './ServicesSection';
 import WhyChooseUs from './WhyChooseUs';
+import OurApproach from './OurApproach';
+import StatsBanner from './StatsBanner';
+import CtaCard from './CtaCard';
+import Footer from './Footer';
 
 interface HomePageProps {
   onNavigate?: (page: string) => void;
@@ -173,6 +177,26 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       {/* 5. WHY CHOOSE US SECTION (PHASE 3) */}
       {/* ========================================================================= */}
       <WhyChooseUs />
+
+      {/* ========================================================================= */}
+      {/* 6. OUR APPROACH SECTION (PHASE 4) */}
+      {/* ========================================================================= */}
+      <OurApproach />
+
+      {/* ========================================================================= */}
+      {/* 7. STATS BANNER SECTION */}
+      {/* ========================================================================= */}
+      <StatsBanner />
+
+      {/* ========================================================================= */}
+      {/* 8. CTA CARD SECTION */}
+      {/* ========================================================================= */}
+      <CtaCard />
+
+      {/* ========================================================================= */}
+      {/* 9. FOOTER SECTION */}
+      {/* ========================================================================= */}
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

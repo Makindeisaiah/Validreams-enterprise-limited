@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import CtaCard from './CtaCard';
 import Footer from './Footer';
+import StatsBanner from './StatsBanner';
 
 interface AboutPageProps {
   onNavigate: (page: string) => void;
@@ -423,6 +424,11 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 6. STATS BANNER SECTION */}
+      {/* ========================================================================= */}
+      <StatsBanner />
 
       {/* ========================================================================= */}
       {/* 7. CTA CARD SECTION */}
