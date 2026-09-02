@@ -173,20 +173,38 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5 stroke-[2]" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
                     Primary Phone &amp; Emergency Dispatch
                   </h3>
                   <a
                     href="tel:+2348026868355"
-                    className="text-base font-bold text-gray-900 hover:text-[#1F3D2E] transition-colors block"
+                    className="text-lg font-bold text-gray-900 hover:text-[#1F3D2E] transition-colors block tracking-wide"
                   >
                     +234 802 686 8355
                   </a>
-                  <p className="text-xs text-emerald-700 font-medium mt-1 flex items-center gap-1">
+                  <p className="text-xs text-emerald-700 font-medium mt-1 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Active Helpdesk &amp; Technical Line
+                    Active Helpdesk &amp; Technical Line (24/7 Dispatch)
                   </p>
+                  <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-gray-100">
+                    <a
+                      href="tel:+2348026868355"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1F3D2E] text-white text-xs font-semibold hover:bg-[#152a20] transition-colors"
+                    >
+                      <Phone className="w-3 h-3" />
+                      <span>Call Now</span>
+                    </a>
+                    <a
+                      href="https://wa.me/2348026868355?text=Hello%20Validreams%2C%20I%20would%20like%20to%20inquire%20about%20your%20property%20and%20facilities%20management%20services."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors"
+                    >
+                      <MessageSquare className="w-3 h-3" />
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 

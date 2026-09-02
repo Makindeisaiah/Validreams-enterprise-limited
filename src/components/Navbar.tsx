@@ -14,6 +14,8 @@ import {
   Award,
   ArrowRight,
   Layers,
+  Phone,
+  Mail,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { servicesList } from '../data/servicesData';
@@ -92,6 +94,33 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="w-full bg-white/98 backdrop-blur-md border-b border-gray-100 z-50 sticky top-0 shadow-sm"
     >
+      {/* Top Utility Contact Strip */}
+      <div className="bg-[#14281F] text-white/90 text-xs py-1.5 px-4 sm:px-6 lg:px-8 border-b border-white/10 hidden sm:block">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <a
+              href="tel:+2348026868355"
+              className="inline-flex items-center space-x-2 text-white/90 hover:text-[#facc15] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#facc15]" />
+              <span className="font-semibold tracking-wide">+234 802 686 8355</span>
+            </a>
+            <a
+              href="mailto:info@validreamspfmgts.com"
+              className="inline-flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[#facc15]" />
+              <span>info@validreamspfmgts.com</span>
+            </a>
+          </div>
+          <div className="flex items-center space-x-3 text-white/70 text-[11px]">
+            <span>141 Moshood Abiola Way, Lagos Mainland</span>
+            <span className="text-white/30">•</span>
+            <span className="text-[#facc15] font-medium">24/7 Operations</span>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo */}
@@ -454,8 +483,15 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               Contact Us
             </button>
 
-            {/* Mobile CTA */}
-            <div className="pt-3">
+            {/* Mobile Contact Quick Action */}
+            <div className="pt-3 pb-1 border-t border-gray-100 space-y-2">
+              <a
+                href="tel:+2348026868355"
+                className="w-full py-2.5 px-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[#1F3D2E] font-bold text-xs flex items-center justify-center space-x-2 border border-emerald-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-emerald-700" />
+                <span>Call +234 802 686 8355</span>
+              </a>
               <button
                 type="button"
                 onClick={() => handleNavClick('contact')}
