@@ -7,6 +7,7 @@ import {
   Facebook,
   Instagram,
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface FooterProps {
   onNavigate?: (page: string) => void;
@@ -46,8 +47,12 @@ export default function Footer({ onNavigate }: FooterProps) {
   ];
 
   return (
-    <footer
+    <motion.footer
       id="footer"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       className="w-full bg-[#3D6B57] text-white pt-16 sm:pt-20 pb-10 sm:pb-12"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
@@ -240,6 +245,6 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

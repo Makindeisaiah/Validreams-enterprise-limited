@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 
@@ -57,8 +58,11 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 1. TOP NAVIGATION BAR */}
       {/* ========================================================================= */}
-      <header
+      <motion.header
         id="navbar"
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: 'easeOut' }}
         className="w-full bg-white border-b border-gray-100 z-50 sticky top-0 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -151,7 +155,7 @@ export default function App() {
             ))}
           </div>
         )}
-      </header>
+      </motion.header>
 
       {/* PAGE VIEW ROUTING */}
       {currentPage === 'home' ? (

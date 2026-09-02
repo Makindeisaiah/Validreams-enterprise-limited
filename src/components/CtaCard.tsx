@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function CtaCard() {
   return (
@@ -8,7 +9,13 @@ export default function CtaCard() {
       className="w-full bg-white py-16 sm:py-20 lg:py-24"
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100/80 p-6 sm:p-8 lg:p-10 xl:p-12">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100/80 p-6 sm:p-8 lg:p-10 xl:p-12"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             {/* LEFT COLUMN: Heading & Subtext */}
             <div className="lg:col-span-5 flex flex-col justify-center">
@@ -58,20 +65,25 @@ export default function CtaCard() {
               </div>
 
               {/* Solid Dark Green Rounded Button */}
-              <a
+              <motion.a
                 href="#contact"
                 id="cta-talk-team-btn"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-all duration-200 shadow-sm hover:shadow-md group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: '0 12px 24px -6px rgba(31, 61, 46, 0.35)',
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#1F3D2E] hover:bg-[#152a20] text-white font-medium text-sm sm:text-base rounded-lg transition-colors duration-200 shadow-sm group focus:outline-none focus:ring-2 focus:ring-[#1F3D2E] focus:ring-offset-2"
               >
                 <span>Talk to Our Team</span>
                 <ArrowRight
-                  className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1"
+                  className="w-4 h-4 stroke-[2.5]"
                   aria-hidden="true"
                 />
-              </a>
+              </motion.a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

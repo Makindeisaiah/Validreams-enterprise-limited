@@ -1,5 +1,52 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Building2, Users, Settings, ShieldCheck } from 'lucide-react';
+import { motion, useInView, animate } from 'framer-motion';
+
+function StatCounter({ value }: { value: string }) {
+  const [displayValue, setDisplayValue] = useState('0');
+  const ref = useRef<HTMLParagraphElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    if (value === '24/7') {
+      const controls = animate(0, 24, {
+        duration: 1.5,
+        ease: 'easeOut',
+        onUpdate: (latest) => {
+          setDisplayValue(`${Math.round(latest)}/7`);
+        },
+      });
+      return () => controls.stop();
+    }
+
+    const numericMatch = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
+    if (numericMatch) {
+      const target = parseFloat(numericMatch[1]);
+      const suffix = numericMatch[2] || '';
+      const isDecimal = numericMatch[1].includes('.');
+      const controls = animate(0, target, {
+        duration: 1.6,
+        ease: 'easeOut',
+        onUpdate: (latest) => {
+          setDisplayValue(
+            isDecimal ? `${latest.toFixed(1)}${suffix}` : `${Math.round(latest)}${suffix}`
+          );
+        },
+      });
+      return () => controls.stop();
+    }
+
+    setDisplayValue(value);
+  }, [isInView, value]);
+
+  return (
+    <p ref={ref} className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2 tabular-nums">
+      {displayValue}
+    </p>
+  );
+}
 
 export default function StatsBanner() {
   const stats = [
@@ -52,32 +99,40 @@ export default function StatsBanner() {
       {/* 4-Column Stat Items Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-8 text-center items-center justify-between">
-          {stats.map((stat) => {
+          {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div
+              <motion.div
                 key={stat.id}
                 id={`stat-${stat.id}`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
                 className="flex flex-col items-center group"
               >
                 {/* White outline icon on top */}
-                <div className="mb-3.5 text-white transition-transform duration-300 group-hover:scale-110">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.1, ease: 'easeOut' }}
+                  className="mb-3.5 text-white transition-transform duration-300 group-hover:scale-110"
+                >
                   <IconComponent
                     className="w-9 h-9 sm:w-10 sm:h-10 stroke-[1.6]"
                     aria-hidden="true"
                   />
-                </div>
+                </motion.div>
 
-                {/* Large bold amber/gold number */}
-                <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
-                  {stat.number}
-                </p>
+                {/* Animated counter amber/gold number */}
+                <StatCounter value={stat.number} />
 
                 {/* White label text */}
                 <p className="text-sm sm:text-base font-medium text-white tracking-wide">
                   {stat.label}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>

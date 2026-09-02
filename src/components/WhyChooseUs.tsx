@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserCheck, Monitor, ShieldCheck, Award, Leaf } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function WhyChooseUs() {
   const valueProps = [
@@ -45,7 +46,13 @@ export default function WhyChooseUs() {
           {/* ========================================================================= */}
           {/* LEFT HALF */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="lg:col-span-5 flex flex-col justify-center"
+          >
             {/* Small amber/gold eyebrow label */}
             <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase mb-3 sm:mb-4">
               WHY CHOOSE VALIDREAMS
@@ -61,19 +68,41 @@ export default function WhyChooseUs() {
             <p className="text-gray-800 text-sm sm:text-base leading-relaxed max-w-lg">
               We combine professionalism, technology and integrity to deliver outstanding management services that protect your investment and enhance the living and working experience.
             </p>
-          </div>
+          </motion.div>
 
           {/* ========================================================================= */}
           {/* RIGHT HALF: 5 Value-Prop Items with Amber/Gold Dividers */}
           {/* ========================================================================= */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-10 sm:gap-y-12 lg:gap-y-0">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-10 sm:gap-y-12 lg:gap-y-0"
+            >
               {valueProps.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
-                  <div
+                  <motion.div
                     key={item.id}
                     id={`why-choose-${item.id}`}
+                    variants={{
+                      hidden: { opacity: 0, y: 25 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.5, ease: 'easeOut' },
+                      },
+                    }}
                     className={`flex flex-col items-center text-center justify-start group ${
                       index > 0
                         ? 'lg:border-l lg:border-[#facc15]/80 lg:pl-3 xl:lg:pl-5'
@@ -95,10 +124,10 @@ export default function WhyChooseUs() {
                       <span className="block">{item.line1}</span>
                       <span className="block">{item.line2}</span>
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

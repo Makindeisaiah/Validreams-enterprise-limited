@@ -6,6 +6,7 @@ import {
   Monitor,
   Users,
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function OurApproach() {
   const steps = [
@@ -50,7 +51,13 @@ export default function OurApproach() {
         {/* ========================================================================= */}
         {/* 1. CENTERED SECTION HEADER */}
         {/* ========================================================================= */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24"
+        >
           {/* Small amber/gold eyebrow label */}
           <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase mb-3 sm:mb-4">
             OUR APPROACH
@@ -60,35 +67,78 @@ export default function OurApproach() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F3D2E] tracking-tight leading-tight">
             Preventive Today. Peace of Mind Always
           </h2>
-        </div>
+        </motion.div>
 
         {/* ========================================================================= */}
         {/* 2. 5-STEP HORIZONTAL PROCESS TIMELINE */}
         {/* ========================================================================= */}
         <div className="relative w-full">
           {/* Continuous horizontal dotted connector line passing through circle centers */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            style={{ transformOrigin: 'left center' }}
             className="hidden lg:block absolute top-12 left-12 right-12 border-t-2 border-dotted border-[#facc15] z-0"
             aria-hidden="true"
           />
 
           {/* Steps container */}
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-6">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.12,
+                  delayChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative z-10 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-6"
+          >
             {steps.map((step) => {
               const IconComponent = step.icon;
               return (
-                <div
+                <motion.div
                   key={step.number}
                   id={`approach-step-${step.number}`}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.5, ease: 'easeOut' },
+                    },
+                  }}
                   className="flex flex-col items-center text-center flex-1 max-w-[240px] mx-auto lg:max-w-none group"
                 >
                   {/* Solid dark green circular node (96px diameter) */}
-                  <div className="w-24 h-24 rounded-full bg-[#1F3D2E] flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl shrink-0 mb-6 sm:mb-7 border-4 border-white">
+                  <motion.div
+                    variants={{
+                      hidden: { scale: 0.8, opacity: 0 },
+                      show: {
+                        scale: 1,
+                        opacity: 1,
+                        transition: {
+                          type: 'spring',
+                          stiffness: 260,
+                          damping: 18,
+                        },
+                      },
+                    }}
+                    whileHover={{ scale: 1.08 }}
+                    className="w-24 h-24 rounded-full bg-[#1F3D2E] flex items-center justify-center shadow-lg transition-shadow duration-300 group-hover:shadow-xl shrink-0 mb-6 sm:mb-7 border-4 border-white cursor-pointer"
+                  >
                     <IconComponent
                       className="w-10 h-10 text-white stroke-[1.8]"
                       aria-hidden="true"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Step Number */}
                   <span className="text-lg sm:text-xl font-bold text-gray-950 tracking-tight mb-1">
@@ -104,10 +154,10 @@ export default function OurApproach() {
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal max-w-[190px] sm:max-w-[210px]">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
