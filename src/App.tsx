@@ -430,6 +430,101 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 6. OUR MANAGEMENT STRUCTURE SECTION (PHASE 5) */}
+      {/* ========================================================================= */}
+      <section
+        id="management-structure"
+        className="w-full bg-[#F1F1F0] text-gray-900 py-20 sm:py-24 lg:py-28"
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+          {/* Centered Header Block */}
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20">
+            {/* Amber/Gold Eyebrow Label */}
+            <p className="text-xs sm:text-sm font-bold text-[#facc15] tracking-widest uppercase mb-3 sm:mb-4">
+              OUR MANAGEMENT STRUCTURE
+            </p>
+
+            {/* Large Bold Heading in Dark Green */}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1F3D2E] tracking-tight leading-tight mb-4 sm:mb-5">
+              Experienced People. Exceptional Service.
+            </h2>
+
+            {/* Gray Body Paragraph */}
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              Our leadership team brings together deep industry knowledge, diverse expertise, and a shared commitment to delivering excellence in every projects we undertake.
+            </p>
+          </div>
+
+          {/* Row of 5 Team Member Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-7 lg:gap-6 items-start">
+            {[
+              {
+                image: '/assets/team_manager.jpg',
+                fallback: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+                title: 'Facilities Manager',
+                subtitle: 'Overall site management',
+              },
+              {
+                image: '/assets/team_technician.jpg',
+                fallback: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                title: 'Technicians',
+                subtitle: 'Maintenance support',
+              },
+              {
+                image: '/assets/team_soft_services.jpg',
+                fallback: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                title: 'Soft Services Supervisor',
+                subtitle: 'Maintenance support',
+              },
+              {
+                image: '/assets/team_security.jpg',
+                fallback: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+                title: 'Security Supervisor',
+                subtitle: 'Guard operations',
+              },
+              {
+                image: '/assets/team_helpdesk.jpg',
+                fallback: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+                title: 'Helpdesk Officer',
+                subtitle: 'Resident support & Complaints',
+              },
+            ].map((member, index) => (
+              <div
+                key={member.title}
+                id={`team-member-${index + 1}`}
+                className="flex flex-col items-center text-center group"
+              >
+                {/* Rounded-corner Portrait Photo (4:5 aspect ratio) */}
+                <div className="w-full aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200/70 mb-4 transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
+                  <img
+                    src={member.image}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src !== member.fallback) {
+                        target.src = member.fallback;
+                      }
+                    }}
+                    alt={member.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Bold Dark Title */}
+                <h3 className="text-base sm:text-[17px] font-bold text-[#1F3D2E] tracking-tight mb-1">
+                  {member.title}
+                </h3>
+
+                {/* Smaller Gray Subtitle */}
+                <p className="text-xs sm:text-sm text-gray-500 font-normal">
+                  {member.subtitle}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
