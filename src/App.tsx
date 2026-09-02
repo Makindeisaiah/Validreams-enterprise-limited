@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { ChevronRight, Menu, X, ArrowRight } from 'lucide-react';
+import {
+  ChevronRight,
+  Menu,
+  X,
+  ArrowRight,
+  Building2,
+  Users,
+  Settings,
+  ShieldCheck,
+} from 'lucide-react';
 
 export default function AboutUsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -237,34 +246,97 @@ export default function AboutUsPage() {
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gray-100 aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] group">
                 {/* Reception Lobby Image */}
                 <img
-                  src="./assets/reception_lobby.jpg"
+                  src="/assets/reception_lobby.png"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src.endsWith('/assets/reception_lobby.jpg')) {
-                      target.src = '/assets/images/reception_lobby_1788358529813.jpg';
+                    if (target.src.endsWith('/assets/reception_lobby.png')) {
+                      target.src = '/assets/reception_lobby.jpg';
                     }
                   }}
-                  alt="Validreams modern reception lobby with marble desk and executive lounge"
+                  alt="Validreams modern reception lobby"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-
-                {/* Validreams Logo cleanly placed on the marble reception desk */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-2 sm:pb-4 pr-10 sm:pr-14">
-                  <div className="bg-white/80 backdrop-blur-xs px-3.5 py-1.5 rounded-md shadow-xs opacity-90">
-                    <img
-                      src="./assets/logo.png"
-                      onError={(e) => {
-                        const target = e.currentTarget;
-                        if (target.src.endsWith('/assets/logo.png')) {
-                          target.src = '/logo.png';
-                        }
-                      }}
-                      alt="Validreams Logo"
-                      className="h-6 sm:h-8 w-auto object-contain mix-blend-multiply"
-                    />
-                  </div>
-                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. STATS BANNER SECTION */}
+      {/* ========================================================================= */}
+      <section
+        id="stats-banner"
+        className="relative w-full min-h-[320px] sm:min-h-[340px] lg:min-h-[360px] flex items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16"
+      >
+        {/* Full-bleed night-time cityscape / luxury building photo background */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2400&q=85"
+            alt="Night architectural luxury building skyline"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* Dark overlay (roughly 55-65% opacity) */}
+        <div
+          className="absolute inset-0 bg-slate-950/60 backdrop-brightness-75"
+          aria-hidden="true"
+        />
+
+        {/* 4-Column Stat Items Container */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-8 text-center items-center justify-between">
+            {/* Stat 1: Properties Managed */}
+            <div id="stat-properties" className="flex flex-col items-center group">
+              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
+                <Building2 className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
+              </div>
+              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
+                15+
+              </p>
+              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
+                Properties Managed
+              </p>
+            </div>
+
+            {/* Stat 2: Expert Professionals */}
+            <div id="stat-professionals" className="flex flex-col items-center group">
+              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
+                <Users className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
+              </div>
+              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
+                100+
+              </p>
+              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
+                Expert Professionals
+              </p>
+            </div>
+
+            {/* Stat 3: Operational Support */}
+            <div id="stat-support" className="flex flex-col items-center group">
+              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
+                <Settings className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
+              </div>
+              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
+                24/7
+              </p>
+              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
+                Operational Support
+              </p>
+            </div>
+
+            {/* Stat 4: Client Satisfaction */}
+            <div id="stat-satisfaction" className="flex flex-col items-center group">
+              <div className="mb-3 text-white transition-transform duration-200 group-hover:scale-110">
+                <ShieldCheck className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.75]" aria-hidden="true" />
+              </div>
+              <p className="text-4xl sm:text-5xl font-bold text-[#facc15] tracking-tight mb-2">
+                98%
+              </p>
+              <p className="text-sm sm:text-base font-medium text-white/90 tracking-wide">
+                Client Satisfaction
+              </p>
             </div>
           </div>
         </div>
