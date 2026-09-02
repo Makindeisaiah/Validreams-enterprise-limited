@@ -16,6 +16,12 @@ import {
   Award,
   Leaf,
   Phone,
+  Facebook,
+  Instagram,
+  Twitter,
+  MapPin,
+  Mail,
+  Globe,
 } from 'lucide-react';
 
 export default function App() {
@@ -931,6 +937,227 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 6: FOOTER SECTION */}
+      {/* ========================================================================= */}
+      <footer
+        id="footer"
+        className="w-full bg-[#3D6B57] text-white font-sans selection:bg-amber-400 selection:text-gray-950"
+      >
+        {/* Main 4-Column Footer Grid */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pt-16 pb-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-0">
+            {/* COLUMN 1: Logo, Brand Statement & Social Icons (Widest) */}
+            <div
+              id="footer-col-brand"
+              className="lg:col-span-4 lg:pr-10 flex flex-col justify-between"
+            >
+              <div>
+                {/* Logo chip for contrast on dark green background */}
+                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-2.5 px-3.5 inline-block shadow-sm mb-6 max-w-[170px]">
+                  <img
+                    src="./assets/logo.png"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.endsWith('/assets/logo.png')) {
+                        target.src = '/logo.png';
+                      }
+                    }}
+                    alt="Validreams Enterprises Limited"
+                    className="w-full h-auto object-contain max-h-12"
+                  />
+                </div>
+
+                <p className="text-white/90 text-sm sm:text-[15px] leading-relaxed max-w-sm mb-8">
+                  We deliver reliable, technology-driven and premium property and facilities management solutions that create value and peace of mind.
+                </p>
+              </div>
+
+              {/* Circular Outlined Social Icons */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-10 h-10 rounded-full border border-white/40 hover:border-white hover:bg-white/10 flex items-center justify-center text-white transition-all duration-200 group"
+                >
+                  <Facebook className="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:scale-110" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full border border-white/40 hover:border-white hover:bg-white/10 flex items-center justify-center text-white transition-all duration-200 group"
+                >
+                  <Instagram className="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:scale-110" />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X (formerly Twitter)"
+                  className="w-10 h-10 rounded-full border border-white/40 hover:border-white hover:bg-white/10 flex items-center justify-center text-white transition-all duration-200 group"
+                >
+                  <Twitter className="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:scale-110" />
+                </a>
+              </div>
+            </div>
+
+            {/* COLUMN 2: Quick Links */}
+            <div
+              id="footer-col-quick-links"
+              className="lg:col-span-2 lg:px-8 lg:border-l lg:border-white/15"
+            >
+              <h4 className="text-base sm:text-lg font-bold text-white mb-5 tracking-tight">
+                Quick Links
+              </h4>
+              <ul className="space-y-2.5 sm:space-y-3">
+                {[
+                  { label: 'Home', href: '#' },
+                  { label: 'About Us', href: '#why-choose-us' },
+                  { label: 'Services', href: '#services' },
+                  { label: 'Property & Facilities', href: '#facilities' },
+                  { label: 'Projects', href: '#projects' },
+                  { label: 'Insights', href: '#insights' },
+                  { label: 'Contact Us', href: '#contact' },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="text-white/80 hover:text-white transition-colors text-sm leading-normal inline-block hover:translate-x-0.5 duration-150"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* COLUMN 3: Our Services */}
+            <div
+              id="footer-col-services"
+              className="lg:col-span-3 lg:px-8 lg:border-l lg:border-white/15"
+            >
+              <h4 className="text-base sm:text-lg font-bold text-white mb-5 tracking-tight">
+                Our Services
+              </h4>
+              <ul className="space-y-2.5 sm:space-y-3">
+                {[
+                  'Property & Rent Management',
+                  'Technical & Maintenance',
+                  'Soft Services',
+                  'Security Management',
+                  'Administrative & Financial Management',
+                  'CAFM',
+                  'Consulting',
+                  'Real Estate Services',
+                ].map((service) => (
+                  <li key={service}>
+                    <a
+                      href="#services"
+                      className="text-white/80 hover:text-white transition-colors text-sm leading-normal inline-block hover:translate-x-0.5 duration-150"
+                    >
+                      {service}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* COLUMN 4: Contact Us */}
+            <div
+              id="footer-col-contact"
+              className="lg:col-span-3 lg:pl-8 lg:border-l lg:border-white/15"
+            >
+              <h4 className="text-base sm:text-lg font-bold text-white mb-5 tracking-tight">
+                Contact Us
+              </h4>
+              <ul className="space-y-4">
+                {/* Map Pin */}
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5 stroke-[2]" aria-hidden="true" />
+                  <span className="text-white/90 text-sm leading-relaxed">
+                    141 Moshood Abiola Way, Lagos Mainland, Lagos
+                  </span>
+                </li>
+
+                {/* Phone */}
+                <li className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-white shrink-0 stroke-[2]" aria-hidden="true" />
+                  <a
+                    href="tel:+2348026668355"
+                    className="text-white/90 hover:text-white transition-colors text-sm leading-relaxed"
+                  >
+                    +234 802 666 8355
+                  </a>
+                </li>
+
+                {/* Mail */}
+                <li className="flex items-start gap-3">
+                  <Mail className="w-5 h-5 text-white shrink-0 mt-0.5 stroke-[2]" aria-hidden="true" />
+                  <div className="flex flex-col text-sm text-white/90 leading-relaxed">
+                    <a
+                      href="mailto:validreamsenterprise@gmail.com"
+                      className="hover:text-white transition-colors"
+                    >
+                      validreamsenterprise@gmail.com
+                    </a>
+                    <a
+                      href="mailto:info@validreamspfmgts.com"
+                      className="hover:text-white transition-colors"
+                    >
+                      info@validreamspfmgts.com
+                    </a>
+                  </div>
+                </li>
+
+                {/* Globe */}
+                <li className="flex items-center gap-3">
+                  <Globe className="w-5 h-5 text-white shrink-0 stroke-[2]" aria-hidden="true" />
+                  <a
+                    href="https://www.validreamspfmgts.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/90 hover:text-white transition-colors text-sm leading-relaxed"
+                  >
+                    www.validreamspfmgts.com
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar: Divider & Copyright / Legal */}
+        <div className="border-t border-white/15">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/80">
+            {/* Left: Copyright */}
+            <p className="text-center sm:text-left">
+              2026 Validreams Enterprise Limited. All Right Reserved.
+            </p>
+
+            {/* Right: Legal Links */}
+            <div className="flex items-center gap-3 text-white/80">
+              <a
+                href="#privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-white/40" aria-hidden="true">|</span>
+              <a
+                href="#terms"
+                className="hover:text-white transition-colors"
+              >
+                Terms &amp; Conditions
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
