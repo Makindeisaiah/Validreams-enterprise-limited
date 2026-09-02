@@ -14,6 +14,8 @@ import {
   Lightbulb,
   Leaf,
 } from 'lucide-react';
+import CtaCard from './components/CtaCard';
+import Footer from './components/Footer';
 
 export default function AboutUsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -525,6 +527,16 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 7. CTA CARD SECTION */}
+      {/* ========================================================================= */}
+      <CtaCard />
+
+      {/* ========================================================================= */}
+      {/* 8. FOOTER SECTION */}
+      {/* ========================================================================= */}
+      <Footer />
     </div>
   );
 }
